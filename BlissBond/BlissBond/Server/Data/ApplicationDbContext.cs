@@ -1,4 +1,5 @@
-﻿using BlissBond.Server.Models;
+﻿using BlissBond.Server.Configurations.Entities;
+using BlissBond.Server.Models;
 using BlissBond.Shared.Domain;
 using Duende.IdentityServer.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
@@ -35,6 +36,9 @@ namespace BlissBond.Server.Data
                 .HasForeignKey(m => m.User2Id)
                 .OnDelete(DeleteBehavior.Restrict);
 
+
+            modelBuilder.ApplyConfiguration(new UserSeedConfigurations());
+            modelBuilder.ApplyConfiguration(new MatchSeedConfigurations());
         }
     }
 }
