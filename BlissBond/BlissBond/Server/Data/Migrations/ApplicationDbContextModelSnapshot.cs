@@ -120,11 +120,16 @@ namespace BlissBond.Server.Data.Migrations
                     b.Property<int>("User2Id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("User1Id");
 
                     b.HasIndex("User2Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Matches");
                 });
@@ -461,7 +466,7 @@ namespace BlissBond.Server.Data.Migrations
 
             modelBuilder.Entity("BlissBond.Shared.Domain.Match", b =>
                 {
-                    b.HasOne("BlissBond.Shared.Domain.User", "User1")
+                    b.HasOne("BlissBond.Shared.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("User1Id")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -473,7 +478,11 @@ namespace BlissBond.Server.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("User1");
+                    b.HasOne("BlissBond.Shared.Domain.User", null)
+                        .WithMany("Matches")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
 
                     b.Navigation("User2");
                 });
@@ -527,6 +536,11 @@ namespace BlissBond.Server.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlissBond.Shared.Domain.User", b =>
+                {
+                    b.Navigation("Matches");
                 });
 #pragma warning restore 612, 618
         }

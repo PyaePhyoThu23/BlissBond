@@ -24,7 +24,7 @@ namespace BlissBond.Server.Data
 
             // Your model configuration here
             modelBuilder.Entity<Match>()
-                .HasOne(m => m.User1)
+                .HasOne(m => m.User)
                 .WithMany() // Assuming you don't have a navigation property for this relationship
                 .HasForeignKey(m => m.User1Id)
                 .OnDelete(DeleteBehavior.Restrict); // Prevents cascade delete

@@ -5,7 +5,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "hash": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7\/p4nS6D\/0=",
       "url": "css\/bootstrap\/bootstrap.min.css"
     },
     {
@@ -849,8 +849,8 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-cPJgWy8SjMaYFeimGkYy23ls+rDZVmoC\/eMoHpqRc+4=",
-      "url": "_framework\/dotnet.7.0.12.cd75lmyo37.js"
+      "hash": "sha256-eRbsSkKiWKWKcMiqy13LuLSBIpzmn52qw\/6SX+1jNQ0=",
+      "url": "_framework\/dotnet.7.0.13.6lwexe7ntd.js"
     },
     {
       "hash": "sha256-O421u5MzVtmNN7GY9RXR9Ib1uPK4hQfPpzOVofr7iNU=",
@@ -877,19 +877,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-EVgVW3J+rZlnz3527gdFaPLlJFHra+IhwKMy7+RySd4=",
+      "hash": "sha256-TKGAXN1+CX1BAx+FYQwX6vZkfPwMpl+oXIgl6rZ3IiA=",
       "url": "_framework\/BlissBond.Shared.dll"
     },
     {
-      "hash": "sha256-jARIqmvgemwROmgy9xHOAek+UVpW1XJJVQn9Ktl3nrY=",
+      "hash": "sha256-DmS\/PGhkihzSdoXFZLP\/PAQ8P7W3Gh15isy71EcUzpA=",
       "url": "_framework\/BlissBond.Shared.pdb"
     },
     {
-      "hash": "sha256-bg8Lf17ogpeXmwHSnA6\/e34+yTLfzQe5MnS5+H9i50Q=",
+      "hash": "sha256-1ZIlVhe297JIg3VrHCY3COdidm3d5eXKiL9\/qnncP3U=",
       "url": "_framework\/BlissBond.Client.dll"
     },
     {
-      "hash": "sha256-2nmEtJLkecx6PfBBX\/0fGukxqS6gE9iTTtEcby5zl7U=",
+      "hash": "sha256-SEJWcEdLK2vHOmTmaXyKa4EH20zXzbQJp+TnXru0lYw=",
       "url": "_framework\/BlissBond.Client.pdb"
     },
     {
@@ -897,7 +897,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-RwLpSfifaPK81\/EuqPgHnZST3pza7DOV6wiMps2sdis=",
+      "hash": "sha256-mTV5JPbfEi4oJyUwnxOujYXrpyfIh0HE7r49K5rXd74=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -905,5 +905,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "UIbevpA8"
+  "version": "Okz5VLmj"
 };
