@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlissBond.Server.Data;
 using BlissBond.Shared.Domain;
+using BlissBond.Server.IRepository;
 
 namespace BlissBond.Server.Controllers
 {
@@ -14,41 +15,56 @@ namespace BlissBond.Server.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(ApplicationDbContext context)
+        //Refactored
+        // private readonly ApplicationDbContext _context;
+      
+        //public UsersController(ApplicationDbContext context)
+        public UsersController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            //_context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        //public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            return await _context.Users.ToListAsync();
+            // if (_context.Users == null)
+            //{
+            // return NotFound();
+            //}
+            //  return await _context.Users.ToListAsync();
+            var users = await _unitOfWork.Users.GetAll();
+          return Ok(users);
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
-        {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
+        //public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<IActionResult> GetUser(int id) {
+          var user = await _unitOfWork.Users.Get(q  => q.Id == id);
+          if (user == null)
             {
                 return NotFound();
             }
-
-            return user;
+          return Ok(user);
         }
+          //if (_context.Users == null)
+          //{
+              //return NotFound();
+         // }
+         //   var user = await _context.Users.FindAsync(id);
+
+         //   if (user == null)
+          //  {
+             //   return NotFound();
+          //  }
+
+          //  return user;
+        //}
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -60,15 +76,17 @@ namespace BlissBond.Server.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
-
+         //   _context.Entry(user).State = EntityState.Modified;
+          _unitOfWork.Users.Update(user);
             try
             {
-                await _context.SaveChangesAsync();
+                // await _context.SaveChangesAsync();
+                await _unitOfWork.Save(HttpContext);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                //  if (!UserExists(id))
+                if (!await UserExists(id))
                 {
                     return NotFound();
                 }
@@ -86,13 +104,15 @@ namespace BlissBond.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-          if (_context.Users == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
-          }
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+          //if (_context.Users == null)
+         // {
+           //   return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
+       //   }
+           // _context.Users.Add(user);
+           // await _context.SaveChangesAsync();
 
+            await _unitOfWork.Users.Insert(user);
+            await _unitOfWork.Save(HttpContext);
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
@@ -100,25 +120,37 @@ namespace BlissBond.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Users == null)
-            {
-                return NotFound();
-            }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-            {
+           // if (_context.Users == null)
+          //  {
+          //      return NotFound();
+         //   }
+          //  var user = await _context.Users.FindAsync(id);
+           // if (user == null)
+          //  {
+         //       return NotFound();
+          //  }
+
+          //  _context.Users.Remove(user);
+          //  await _context.SaveChangesAsync();
+
+          //  return NoContent();
+          var user = await _unitOfWork.Users.Get(q=>q.Id == id);
+            if (user == null) { 
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.Users.Delete(id);
+            await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        private bool UserExists(int id)
+       // private bool UserExists(int id)
+        private async Task<bool> UserExists(int id)
         {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+           // return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+           var user = await _unitOfWork.Users.Get(q=> q.Id == id);
+            return user != null;
         }
     }
 }
