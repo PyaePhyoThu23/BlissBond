@@ -1,0 +1,57 @@
+﻿<h3>FormComponent</h3>
+<EditForm Model="@user" OnValidSubmit= "@OnValidSubmit">
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+	<div class="form-group">
+		<label>FirstName: </label>
+		<div>
+			<InputText @bind-Value="@user.FirstName" class="form-control" />
+			<ValidationMessage For="@(()=>user.FirstName)" />
+		</div>
+		<label>LastName: </label>
+		<div>
+			<InputText @bind-Value="@user.LastName" class="form-control" />
+			<ValidationMessage For="@(()=>user.LastName)" />
+		</div>
+		<label>Gender: </label>
+		<div>
+			<InputText @bind-Value="@user.Gender" class="form-control" />
+			<ValidationMessage For="@(()=>user.Gender)" />
+		</div>
+		<label>Bio: </label>
+		<div>
+			<InputText @bind-Value="@user.Bio" class="form-control" />
+			<ValidationMessage For="@(()=>user.Bio)" />
+		</div>
+		<label>Nickname: </label>
+		<div>
+			<InputText @bind-Value="@user.Nickname" class="form-control" />
+			<ValidationMessage For="@(()=>user.Nickname)" />
+		</div>
+		<label>Location: </label>
+		<div>
+			<InputText @bind-Value="@user.Location" class="form-control" />
+			<ValidationMessage For="@(()=>user.Location)" />
+		</div>
+		<label>Email: </label>
+		<div>
+			<InputText @bind-Value="@user.Email" class="form-control" />
+			<ValidationMessage For="@(()=>user.Email)" />
+		</div>
+		<label>Password: </label>
+		<div>
+			<InputText @bind-Value="@user.Password" class="form-control" />
+			<ValidationMessage For="@(()=>user.Password)" />
+		</div>
+
+	</div>
+	<button type="submit" class="btn btn-success btn-block">
+		@ButtonText
+	</button>
+</EditForm>
+@code {
+	[Parameter] public User? user { get; set; }
+	[Parameter] public string ButtonText { get; set; } = "Save";
+	[Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}
