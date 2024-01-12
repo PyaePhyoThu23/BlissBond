@@ -4,6 +4,13 @@
 @attribute [Authorize]
 
 <h3 class="card-title">Users of BlissBond</h3>
+<br />
+    <a href=" /users/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New User
+    </a>
+<br />
+<br />
 @if (Users == null){
     <div class="alert-alert-info">Loading Users...</div>
 }else

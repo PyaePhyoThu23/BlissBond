@@ -202,14 +202,14 @@
       "netstandard.dll": "sha256-urq+e2ZQXxmOWMRxTR92529HnUVu6+kyVnfF6SoLad8=",
       "System.Private.CoreLib.dll": "sha256-ixnF\/wVKLHZM1N0lfJufpZ41EC2LvvyiSqdW43h3Xew=",
       "BlissBond.Shared.dll": "sha256-JKjz\/QeuJE8erZvBy8QLy\/5hGq1BHrEphIomM4YEruY=",
-      "BlissBond.Client.dll": "sha256-xMSTC7DhqL7DtR2pcniBXAoa1iPAoTwz\/Ktwq9VOk\/M="
+      "BlissBond.Client.dll": "sha256-LcCbjRri7sMOdSNk6gSmHZQ4ga6ozvqQRYkGH7542bs="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "BlissBond.Shared.pdb": "sha256-TiXYnJ06IvHirdke+N7owP9RoB7L+SPWGcXiEapYmzs=",
-      "BlissBond.Client.pdb": "sha256-5hGVAfgfNcZGeib\/YjPjXekFMSwF3+00ZborWH8aHEo="
+      "BlissBond.Client.pdb": "sha256-UNYV0dpiAii3LrfVVZrD3KnZ\/nXr6CMSOqMFLwjIA9c="
     },
     "runtime": {
       "dotnet.7.0.12.cd75lmyo37.js": "sha256-cPJgWy8SjMaYFeimGkYy23ls+rDZVmoC\/eMoHpqRc+4=",

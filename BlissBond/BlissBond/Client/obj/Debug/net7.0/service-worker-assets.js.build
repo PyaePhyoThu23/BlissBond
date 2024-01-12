@@ -877,19 +877,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-1ScXhKfCDiocVhqFClI1N9LOVJ9udJZB2OZ2TAGfu6Y=",
+      "hash": "sha256-JKjz\/QeuJE8erZvBy8QLy\/5hGq1BHrEphIomM4YEruY=",
       "url": "_framework\/BlissBond.Shared.dll"
     },
     {
-      "hash": "sha256-dIKipUAv69iADVLljZkJFtmdXy1EW6ZSJ8BNeT43S7M=",
+      "hash": "sha256-TiXYnJ06IvHirdke+N7owP9RoB7L+SPWGcXiEapYmzs=",
       "url": "_framework\/BlissBond.Shared.pdb"
     },
     {
-      "hash": "sha256-4mb+nFGCTP0BkvXVtP1m4m3amYSHm+tloJTtdNo7S2Y=",
+      "hash": "sha256-o2NGx3UUZ7eS2y0R3OjLluqxzEKt6eVFZG1bEXevjew=",
       "url": "_framework\/BlissBond.Client.dll"
     },
     {
-      "hash": "sha256-ec+pbOxR8\/5VC5hLR961lPW\/5CcOYG9JAKyQn1HBJHU=",
+      "hash": "sha256-eB6Urk+97mygQNkoB6ofKDhiVwFXvQLJ4YbWcsQf3hU=",
       "url": "_framework\/BlissBond.Client.pdb"
     },
     {
@@ -897,7 +897,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-Da84UzpB1ZwdlSSpx6wdEfoCMxhaf4V0Hnsb7TMUAT0=",
+      "hash": "sha256-RGxSgN18PwNqN2DteNmX+QNmB8dhBv7alOJB0CHnQm0=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -905,5 +905,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "Y71NU6B7"
+  "version": "C2b4nB7o"
 };
