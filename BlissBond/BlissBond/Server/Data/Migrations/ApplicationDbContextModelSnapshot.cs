@@ -139,7 +139,7 @@ namespace BlissBond.Server.Data.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 5, 17, 33, 5, 510, DateTimeKind.Local).AddTicks(331),
+                            MatchDate = new DateTime(2024, 1, 12, 11, 28, 26, 947, DateTimeKind.Local).AddTicks(1410),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
@@ -509,7 +509,7 @@ namespace BlissBond.Server.Data.Migrations
 
             modelBuilder.Entity("BlissBond.Shared.Domain.Match", b =>
                 {
-                    b.HasOne("BlissBond.Shared.Domain.User", "User")
+                    b.HasOne("BlissBond.Shared.Domain.User", "User1")
                         .WithMany()
                         .HasForeignKey("User1Id")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -525,7 +525,7 @@ namespace BlissBond.Server.Data.Migrations
                         .WithMany("Matches")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("User1");
 
                     b.Navigation("User2");
                 });

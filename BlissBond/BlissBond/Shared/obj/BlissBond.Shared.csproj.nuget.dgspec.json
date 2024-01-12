@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\linmi\\source\\repos\\BlissBond\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {}
+    "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {}
   },
   "projects": {
-    "C:\\Users\\linmi\\source\\repos\\BlissBond\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
+    "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\linmi\\source\\repos\\BlissBond\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
         "projectName": "BlissBond.Shared",
-        "projectPath": "C:\\Users\\linmi\\source\\repos\\BlissBond\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
-        "packagesPath": "C:\\Users\\linmi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\linmi\\source\\repos\\BlissBond\\BlissBond\\BlissBond\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
+        "packagesPath": "C:\\Users\\09262\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\linmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\09262\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
