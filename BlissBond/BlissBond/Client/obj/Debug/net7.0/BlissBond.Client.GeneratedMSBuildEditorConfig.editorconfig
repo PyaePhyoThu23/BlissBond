@@ -44,6 +44,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/09262/source/repos/BlissBondver6/BlissBond/BlissBond/Client/Pages/Matches/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/09262/source/repos/BlissBondver6/BlissBond/BlissBond/Client/Pages/Matches/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/09262/source/repos/BlissBondver6/BlissBond/BlissBond/Client/Pages/Matches/FormComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xGb3JtQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/09262/source/repos/BlissBondver6/BlissBond/BlissBond/Client/Pages/Matches/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/09262/source/repos/BlissBondver6/BlissBond/BlissBond/Client/Pages/Users/Create.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcQ3JlYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
