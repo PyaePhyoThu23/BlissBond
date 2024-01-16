@@ -139,7 +139,7 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 12, 14, 44, 32, 819, DateTimeKind.Local).AddTicks(8217),
+                            MatchDate = new DateTime(2024, 1, 16, 17, 5, 10, 696, DateTimeKind.Local).AddTicks(5016),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
