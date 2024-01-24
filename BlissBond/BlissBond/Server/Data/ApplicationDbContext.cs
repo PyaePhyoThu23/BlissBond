@@ -40,5 +40,7 @@ namespace BlissBond.Server.Data
             modelBuilder.ApplyConfiguration(new UserSeedConfigurations());
             modelBuilder.ApplyConfiguration(new MatchSeedConfigurations());
         }
+
+        public DbSet<BlissBond.Shared.Domain.Request> Request { get; set; } = default!;
     }
 }

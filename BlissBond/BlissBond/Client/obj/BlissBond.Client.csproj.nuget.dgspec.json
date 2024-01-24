@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj": {}
+    "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj": {
+    "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj",
+        "projectUniqueName": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj",
         "projectName": "BlissBond.Client",
-        "projectPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj",
-        "packagesPath": "C:\\Users\\09262\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Client\\obj\\",
+        "projectPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Client\\BlissBond.Client.csproj",
+        "packagesPath": "C:\\Users\\linmi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\09262\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\linmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
-                "projectPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj"
+              "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
+                "projectPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj"
               }
             }
           }
@@ -73,12 +73,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[7.0.13, 7.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
@@ -87,17 +93,17 @@
         }
       }
     },
-    "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
+    "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
         "projectName": "BlissBond.Shared",
-        "projectPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
-        "packagesPath": "C:\\Users\\09262\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\09262\\source\\repos\\BlissBondver6\\BlissBond\\BlissBond\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
+        "packagesPath": "C:\\Users\\linmi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\linmi\\Source\\Repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\09262\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\linmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -138,7 +144,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

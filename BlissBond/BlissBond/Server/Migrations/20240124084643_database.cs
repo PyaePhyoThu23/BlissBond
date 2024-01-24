@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlissBond.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class newdb : Migration
+    public partial class database : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -122,9 +122,9 @@ namespace BlissBond.Server.Migrations
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Nickname = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Popularity = table.Column<double>(type: "float", nullable: false),
+                    Popularity = table.Column<double>(type: "float", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -288,7 +288,7 @@ namespace BlissBond.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Matches",
                 columns: new[] { "Id", "DateCreated", "DateUpdated", "MatchDate", "MatchStatus", "User1Id", "User2Id", "UserId" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 12, 14, 44, 32, 819, DateTimeKind.Local).AddTicks(8217), "Just Friend", 1, 2, null });
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 24, 16, 46, 43, 730, DateTimeKind.Local).AddTicks(9651), "Just Friend", 1, 2, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

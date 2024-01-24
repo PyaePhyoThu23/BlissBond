@@ -31,3 +31,14 @@ C:\Users\09262\source\repos\BlissBondver6\BlissBond\BlissBond\Shared\obj\Debug\n
 C:\Users\09262\source\repos\BlissBondver6\BlissBond\BlissBond\Shared\obj\Debug\net7.0\refint\BlissBond.Shared.dll
 C:\Users\09262\source\repos\BlissBondver6\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.pdb
 C:\Users\09262\source\repos\BlissBondver6\BlissBond\BlissBond\Shared\obj\Debug\net7.0\ref\BlissBond.Shared.dll
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\bin\Debug\net7.0\BlissBond.Shared.deps.json
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\bin\Debug\net7.0\BlissBond.Shared.dll
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\bin\Debug\net7.0\BlissBond.Shared.pdb
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.AssemblyInfoInputs.cache
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.AssemblyInfo.cs
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.csproj.CoreCompileInputs.cache
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.dll
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\refint\BlissBond.Shared.dll
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\BlissBond.Shared.pdb
+C:\Users\linmi\Source\Repos\BlissBond1\BlissBond\BlissBond\Shared\obj\Debug\net7.0\ref\BlissBond.Shared.dll

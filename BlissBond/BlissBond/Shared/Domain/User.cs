@@ -13,9 +13,9 @@ namespace BlissBond.Shared.Domain
         public string Gender { get; set; }
         public string? Bio { get; set; }
         public string? Nickname { get; set; }
-        public string Location { get; set; }
+        public string? Location { get; set; }
         public string Email { get; set; }
-        public double Popularity { get; set; }
+        public double? Popularity { get; set; }
         public string Password { get; set; }
         public int Id { get; set; }
 

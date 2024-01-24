@@ -1,72 +1,80 @@
 ﻿@page "/users/"
 @inject HttpClient _client
+@inject NavigationManager _navManager
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3 class="card-title">Users of BlissBond</h3>
-<br />
-    <a href=" /users/create" class="btn btn-secondary">
-    <span class="oi oi-plus"></span>
-    Create New User
-    </a>
-<br />
-<br />
-@if (Users == null){
-    <div class="alert-alert-info">Loading Users...</div>
-}else
-{
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>LastName</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Users)
-            {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.FirstName</td>
-                <td>
-                    <a href="/users/view/@user.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/users/edit/@user.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                                <EditForm Model="@user" OnValidSubmit="CreateUser">
+                                    <DataAnnotationsValidator />
+                                    <ValidationSummary />
+
+                                    <!-- FirstName -->
+                                    <div class="form-group">
+                                        <label>Your First Name</label>
+                                        <InputText @bind-Value="@user.FirstName" class="form-control" />
+                                        <ValidationMessage For="@(() => user.FirstName)" />
+                                    </div>
+
+                                    <!-- LastName -->
+                                    <div class="form-group">
+                                        <label>Your Last Name</label>
+                                        <InputText @bind-Value="@user.LastName" class="form-control" />
+                                        <ValidationMessage For="@(() => user.LastName)" />
+                                    </div>
+
+                                    <!-- Gender -->
+                                    <div class="form-group">
+                                        <label>Your Gender</label>
+                                        <InputText @bind-Value="@user.Gender" class="form-control" />
+                                        <ValidationMessage For="@(() => user.Gender)" />
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="form-group">
+                                        <label>Your Email</label>
+                                        <InputText @bind-Value="@user.Email" class="form-control" />
+                                        <ValidationMessage For="@(() => user.Email)" />
+                                    </div>
+
+                                    <!-- Password -->
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <InputText @bind-Value="@user.Password" class="form-control" />
+                                        <ValidationMessage For="@(() => user.Password)" />
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                </EditForm>
+                                <a href="/users/create/signin" class="btn btn-primary">Log In</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 @code {
-    private List<User>? Users;
+    User user = new User();
 
-    protected async override Task OnInitializedAsync()
+    private async Task CreateUser()
     {
-        Users = await _client.GetFromJsonAsync<List<User>>( $"{Endpoints.UsersEndpoint}");
-        Users.Count();
-        Console.Write(Users.Count());
-
-    }
-
-    async Task Delete(int userID)
-    {
-        if (Users != null)
-        {
-            var user = Users.First(q => q.Id == userID);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {user.FirstName}?");
-            if (confirm)
-            {
-
-                await _client.DeleteAsync( $"{Endpoints.UsersEndpoint}/{userID}");
-                await OnInitializedAsync();
-            }
-        }
+        await _client.PostAsJsonAsync(Endpoints.UsersEndpoint, user);
+        _navManager.NavigateTo("/users/create/");
     }
 }
+

@@ -1,0 +1,59 @@
+﻿@page "/users/create/signin"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorMessage
+    </div>
+}
+<form @onsubmit="HandleLogin">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+        <input @bind="user.Email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+        <input @bind="user.Password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <label for="floatingPassword">Password</label>
+    </div>
+
+    <div class="form-check text-start my-3">
+        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            Remember me
+        </label>
+    </div>
+    <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+</form>
+
+@code {
+    private User user = new User();
+    private string errorMessage = "";
+    private async Task HandleLogin()
+    {
+        if (await ValidateCredentialsAsync(user.Email, user.Password))
+        {
+            _navManager.NavigateTo("/users/create/signin/requests"); // Replace with your destination page
+        }
+        else
+        {
+            // Handle incorrect credentials, e.g., show an error message
+            errorMessage = "Error 404: Credentials not found."; // Set the error message
+
+        }
+    }
+    private async Task<bool> ValidateCredentialsAsync(string email, string password)
+    {
+        // Fetch the list of users from your backend
+        List<User> users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+
+        // Check if there's a user with the given email and password
+        return users.Any(user => user.Email == email && user.Password == password);
+    }
+
+  
+}
