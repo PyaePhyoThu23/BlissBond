@@ -8,10 +8,13 @@ namespace BlissBond.Shared.Domain
 {
     public class Request:BaseDomainModel
     {
-        public int requestorId { get; set; }
-        public int recieverId { get; set; }
-        public string? status { get; set; }
+        public int RequestorId { get; set; }
+      
+        public int RecieverId { get; set; }
+       
+        public string? Status { get; set; }
         public virtual ICollection<User>? Users { get; set; }
 
+       
     }
 }

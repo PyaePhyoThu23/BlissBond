@@ -17,7 +17,7 @@ namespace BlissBond.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.12")
+                .HasAnnotation("ProductVersion", "7.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -139,11 +139,39 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 24, 16, 46, 43, 730, DateTimeKind.Local).AddTicks(9651),
+                            MatchDate = new DateTime(2024, 1, 25, 16, 5, 21, 339, DateTimeKind.Local).AddTicks(2290),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
                         });
+                });
+
+            modelBuilder.Entity("BlissBond.Shared.Domain.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecieverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RequestorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Request");
                 });
 
             modelBuilder.Entity("BlissBond.Shared.Domain.User", b =>
@@ -192,7 +220,12 @@ namespace BlissBond.Server.Migrations
                     b.Property<double?>("Popularity")
                         .HasColumnType("float");
 
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RequestId");
 
                     b.ToTable("Users");
 
@@ -529,6 +562,13 @@ namespace BlissBond.Server.Migrations
                     b.Navigation("User2");
                 });
 
+            modelBuilder.Entity("BlissBond.Shared.Domain.User", b =>
+                {
+                    b.HasOne("BlissBond.Shared.Domain.Request", null)
+                        .WithMany("Users")
+                        .HasForeignKey("RequestId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -578,6 +618,11 @@ namespace BlissBond.Server.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlissBond.Shared.Domain.Request", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("BlissBond.Shared.Domain.User", b =>

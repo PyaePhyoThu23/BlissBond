@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlissBond.Server.Data;
 using BlissBond.Shared.Domain;
+using BlissBond.Server.IRepository;
 
 namespace BlissBond.Server.Controllers
 {
@@ -14,40 +15,30 @@ namespace BlissBond.Server.Controllers
     [ApiController]
     public class RequestsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public RequestsController(ApplicationDbContext context)
+        public RequestsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Requests
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Request>>> GetRequest()
+        public async Task<IActionResult> GetRequests()
         {
-          if (_context.Request == null)
-          {
-              return NotFound();
-          }
-            return await _context.Request.ToListAsync();
+            var requests = await _unitOfWork.Requests.GetAll();
+            return Ok(requests);
         }
 
         // GET: api/Requests/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Request>> GetRequest(int id)
+       public async Task<IActionResult> GetRequest(int id)
         {
-          if (_context.Request == null)
-          {
-              return NotFound();
-          }
-            var request = await _context.Request.FindAsync(id);
-
+            var request = await _unitOfWork.Requests.Get(q => q.Id == id);
             if (request == null)
             {
                 return NotFound();
             }
-
-            return request;
+            return Ok(request);
         }
 
         // PUT: api/Requests/5
@@ -59,16 +50,15 @@ namespace BlissBond.Server.Controllers
             {
                 return BadRequest();
             }
-
-            _context.Entry(request).State = EntityState.Modified;
+            _unitOfWork.Requests.Update(request);
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _unitOfWork.Save(HttpContext);
             }
-            catch (DbUpdateConcurrencyException)
+            catch(DbUpdateConcurrencyException)
             {
-                if (!RequestExists(id))
+                if (!await RequestExists(id))
                 {
                     return NotFound();
                 }
@@ -77,7 +67,6 @@ namespace BlissBond.Server.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
@@ -86,39 +75,32 @@ namespace BlissBond.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Request>> PostRequest(Request request)
         {
-          if (_context.Request == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Request'  is null.");
-          }
-            _context.Request.Add(request);
-            await _context.SaveChangesAsync();
+         await _unitOfWork.Requests.Insert(request);
+         await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetRequest", new { id = request.Id }, request);
+        return CreatedAtAction("GetRequest", new { id = request.Id }, request);
         }
 
         // DELETE: api/Requests/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRequest(int id)
         {
-            if (_context.Request == null)
-            {
-                return NotFound();
-            }
-            var request = await _context.Request.FindAsync(id);
-            if (request == null)
-            {
+           var request = await _unitOfWork.Requests.Get(q =>q.Id == id);
+            if (request == null) 
+            { 
                 return NotFound();
             }
 
-            _context.Request.Remove(request);
-            await _context.SaveChangesAsync();
+            await _unitOfWork.Requests.Delete(id);
+            await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        private bool RequestExists(int id)
+        private async Task<bool> RequestExists(int id) 
         {
-            return (_context.Request?.Any(e => e.Id == id)).GetValueOrDefault();
+            var request = await _unitOfWork.Requests.Get(q => q.Id == id);
+            return request != null;
         }
     }
 }

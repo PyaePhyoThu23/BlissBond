@@ -1,6 +1,7 @@
 ﻿@page "/users/create/signin"
 @inject HttpClient _client
 @inject NavigationManager _navManager
+@inject IJSRuntime js // Inject the IJSRuntime service
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
@@ -33,19 +34,32 @@
 @code {
     private User user = new User();
     private string errorMessage = "";
+    private int loggedInUserId = 0; // Added property to store the user ID
+
     private async Task HandleLogin()
     {
         if (await ValidateCredentialsAsync(user.Email, user.Password))
         {
-            _navManager.NavigateTo("/users/create/signin/requests"); // Replace with your destination page
+            // Get the user ID when login is successful
+            var user1 = await GetUserByEmailAsync(user.Email);
+            if (user1 != null)
+            {
+                loggedInUserId = user1.Id;
+
+                // Call JavaScript Interop to set the user ID in session storage
+                await js.InvokeVoidAsync("sessionStorage.setItem", "loggedInUserId", loggedInUserId);
+            }
+
+            // Navigate to another page with the user ID included in the URL
+            _navManager.NavigateTo($"/users/create/signin/requests/{loggedInUserId}");
         }
         else
         {
             // Handle incorrect credentials, e.g., show an error message
             errorMessage = "Error 404: Credentials not found."; // Set the error message
-
         }
     }
+
     private async Task<bool> ValidateCredentialsAsync(string email, string password)
     {
         // Fetch the list of users from your backend
@@ -55,5 +69,10 @@
         return users.Any(user => user.Email == email && user.Password == password);
     }
 
-  
+    private async Task<User> GetUserByEmailAsync(string email)
+    {
+        // Fetch the user by email from your backend
+        List<User> users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+        return users.FirstOrDefault(user => user.Email == email);
+    }
 }

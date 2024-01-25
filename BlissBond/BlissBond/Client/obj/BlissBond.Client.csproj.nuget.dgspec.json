@@ -100,7 +100,7 @@
         "projectName": "BlissBond.Shared",
         "projectPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\BlissBond.Shared.csproj",
         "packagesPath": "C:\\Users\\linmi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\linmi\\Source\\Repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\obj\\",
+        "outputPath": "C:\\Users\\linmi\\source\\repos\\BlissBond1\\BlissBond\\BlissBond\\Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\linmi\\AppData\\Roaming\\NuGet\\NuGet.Config",

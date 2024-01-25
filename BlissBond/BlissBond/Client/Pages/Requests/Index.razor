@@ -1,0 +1,87 @@
+﻿@page "/requests/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h1 class="h3 mb-3 fw-normal">User ID: @userId</h1>
+
+@if (requests != null && requests.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Request Name</th>
+                <th>Receiver Name</th>
+                <th>Status</th>
+               
+                <!-- Other request table headers -->
+            </tr>
+        </thead>
+        <tbody>
+          
+            @foreach (var request in requests)
+            {
+                var requestor = users.FirstOrDefault(u => u.Id == request.RequestorId);
+                var receiver = users.FirstOrDefault(u => u.Id == request.RecieverId);
+
+                <tr>
+                    <td>@requestor?.FirstName</td>
+                    <td>@receiver?.FirstName</td>
+                    <!-- Display other request properties -->
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No requests found for the user.</p>
+}
+
+@code {
+    private int userId; // Variable to store the user ID
+    private List<Request> requests; // List to store the retrieved requests
+    private List<User> users;
+    protected override async Task OnInitializedAsync()
+    {
+        // Retrieve the user ID from session storage using JavaScript Interop
+        var result = await js.InvokeAsync<string>("sessionStorage.getItem", "loggedInUserId");
+
+        // Check if the result is not null and can be parsed as an integer
+        if (!string.IsNullOrEmpty(result) && int.TryParse(result, out int parsedUserId))
+        {
+            userId = parsedUserId;
+        }
+
+        // Fetch the requests that match the user ID
+        await LoadRequests();
+    }
+
+    private async Task LoadRequests()
+    {
+        // Make an HTTP request to retrieve the requests
+        var response = await _client.GetFromJsonAsync<List<Request>>($"{Endpoints.RequestsEndpoint}");
+
+        // Filter the requests based on the user ID
+        requests = response.Where(r => r.RecieverId == userId).ToList();
+
+        users = await FetchUserDetails(requests.Select(r => r.RequestorId).Concat(requests.Select(r => r.RecieverId)).Distinct());
+    }
+
+    private async Task<List<User>> FetchUserDetails(IEnumerable<int> userIds)
+    {
+        var userDetails = new List<User>();
+
+        foreach (var userId in userIds)
+        {
+            var user = await _client.GetFromJsonAsync<User>($"{Endpoints.UsersEndpoint}/{userId}");
+            if (user != null)
+            {
+                userDetails.Add(user);
+            }
+        }
+
+        return userDetails;
+    }
+}

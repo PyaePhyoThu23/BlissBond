@@ -12,5 +12,6 @@ namespace BlissBond.Client.Static
         public static readonly string UsersEndpoint = $"{Prefix}/Users";
 
         public static readonly string MatchesEndpoint = $"{Prefix}/Matches";
+        public static readonly string RequestsEndpoint = $"{Prefix}/Requests";
     }
 }

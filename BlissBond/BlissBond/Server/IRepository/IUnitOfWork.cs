@@ -14,6 +14,8 @@ namespace BlissBond.Server.IRepository
         Task Save(HttpContext httpContext);
         IGenericRepository<User> Users { get; }
         IGenericRepository<Match> Matches { get; }
+
+        IGenericRepository<Request> Requests { get; }
        
     }
 }

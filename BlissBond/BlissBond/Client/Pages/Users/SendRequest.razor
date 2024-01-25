@@ -1,0 +1,59 @@
+﻿@page "/users/create/signin/requests/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Requests</h3>
+@if (Users == null)
+{
+    <div class="alert-alert-info">Loading matches...</div>
+}
+else
+{
+    <p>Logged-in User ID: @id</p> <!-- Display the logged-in user's ID -->
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Users)
+            {
+                <tr>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => Requestsend(id, user.Id)">Request</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    [Parameter] public int id { get; set; }
+    private List<User>? Users;
+
+    Request request = new Request();
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+    }
+
+    private async Task Requestsend(int requesterUserId, int targetUserId)
+    {
+        // Set the requester's ID (logged-in user's ID) in the request object
+        request.RequestorId = requesterUserId;
+       
+        // Set the target user's ID in the request object
+        request.RecieverId = targetUserId;
+
+        // Call your logic to send the request using the request object
+        await _client.PostAsJsonAsync(Endpoints.RequestsEndpoint, request);
+    }
+
+    
+}

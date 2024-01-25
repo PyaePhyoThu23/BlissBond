@@ -20,7 +20,7 @@ namespace BlissBond.Server.Repository
         private readonly ApplicationDbContext _context;
         private IGenericRepository<User> _users;
         private IGenericRepository<Match> _matches;
-       
+        private IGenericRepository<Request> _requests;
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -34,8 +34,9 @@ namespace BlissBond.Server.Repository
             => _users ??= new GenericRepository<User>(_context);
         public IGenericRepository<Match> Matches
             => _matches ??= new GenericRepository<Match>(_context);
-        
 
+        public IGenericRepository<Request> Requests
+              => _requests ??= new GenericRepository<Request>(_context);
 
         public void Dispose()
         {
