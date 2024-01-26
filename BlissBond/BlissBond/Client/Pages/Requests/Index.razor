@@ -27,7 +27,11 @@
                 <tr>
                     <td>@requestor?.FirstName</td>
                     <td>@receiver?.FirstName</td>
-                    <!-- Display other request properties -->
+                    <td>@request.Status</td> <!-- Display the request status -->
+                    <td>
+                        <button class="btn btn-success" @onclick="() => AcceptRequest(request.Id)">Accept</button> <!-- Accept button -->
+                        <button class="btn btn-danger" @onclick="() => RejectRequest(request.Id)">Reject</button> <!-- Reject button -->
+                    </td>
                 </tr>
             }
 
@@ -83,5 +87,39 @@ else
         }
 
         return userDetails;
+    }
+
+    private async Task AcceptRequest(int requestId)
+    {
+        // Logic to accept the request
+        // Update the request status and create a match
+        var request = requests.FirstOrDefault(r => r.Id == requestId);
+        if (request != null)
+        {
+            request.Status = "Accepted";
+            await _client.PutAsJsonAsync($"{Endpoints.RequestsEndpoint}/{requestId}", request);
+
+            // Create a match
+            var match = new Match
+                {
+                    User1Id = request.RequestorId,
+                    User2Id = request.RecieverId,
+                    MatchDate = DateTime.Now,
+                    MatchStatus = "Matched"
+                };
+            await _client.PostAsJsonAsync(Endpoints.MatchesEndpoint, match);
+        }
+    }
+
+    private async Task RejectRequest(int requestId)
+    {
+        // Logic to reject the request
+        // Update the request status
+        var request = requests.FirstOrDefault(r => r.Id == requestId);
+        if (request != null)
+        {
+            request.Status = "Rejected";
+            await _client.PutAsJsonAsync($"{Endpoints.RequestsEndpoint}/{requestId}", request);
+        }
     }
 }

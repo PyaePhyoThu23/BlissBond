@@ -114,6 +114,9 @@ namespace BlissBond.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MessageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("User1Id")
                         .HasColumnType("int");
 
@@ -124,6 +127,8 @@ namespace BlissBond.Server.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MessageId");
 
                     b.HasIndex("User1Id");
 
@@ -139,11 +144,43 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 25, 16, 5, 21, 339, DateTimeKind.Local).AddTicks(2290),
+                            MatchDate = new DateTime(2024, 1, 26, 16, 30, 13, 35, DateTimeKind.Local).AddTicks(1834),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
                         });
+                });
+
+            modelBuilder.Entity("BlissBond.Shared.Domain.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Message");
                 });
 
             modelBuilder.Entity("BlissBond.Shared.Domain.Request", b =>
@@ -541,6 +578,10 @@ namespace BlissBond.Server.Migrations
 
             modelBuilder.Entity("BlissBond.Shared.Domain.Match", b =>
                 {
+                    b.HasOne("BlissBond.Shared.Domain.Message", null)
+                        .WithMany("Matches")
+                        .HasForeignKey("MessageId");
+
                     b.HasOne("BlissBond.Shared.Domain.User", "User1")
                         .WithMany()
                         .HasForeignKey("User1Id")
@@ -618,6 +659,11 @@ namespace BlissBond.Server.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlissBond.Shared.Domain.Message", b =>
+                {
+                    b.Navigation("Matches");
                 });
 
             modelBuilder.Entity("BlissBond.Shared.Domain.Request", b =>

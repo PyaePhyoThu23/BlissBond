@@ -2,71 +2,98 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-<h3 class="card-title">Matches</h3>
+
+<h3 class="card-title">Your Matches</h3>
 <br />
 
-@if (Matches == null){
-<div class="alert-alert-info">Loading matches...</div>
-}else
+@if (matches == null)
 {
-<table class="table table-responsive">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Match Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var match in Matches)
-        {
-            <tr>
-                <td>@match.Id</td>
-                <td>@match.MatchStatus</td>
-                <td>
-                    <a href="/matches/view/@match.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/users/edit/@match.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(match.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="alert alert-info">Loading matches...</div>
 }
+else if (matches.Any())
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>User1</th>
+                <th>User2</th>
+                <th>Match Status</th>
+                <!-- Other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var match in matches)
+            {
+                var user1 = users.FirstOrDefault(u => u.Id == match.User1Id);
+                var user2 = users.FirstOrDefault(u => u.Id == match.User2Id);
+                <tr>
+                    <td>@(user1?.FirstName ?? "Unknown")</td>
+                    <td>@(user2?.FirstName ?? "Unknown")</td>
+                    <td>@match.MatchStatus</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No matches found.</p>
+}
+
 @code {
-    private List<Match>? Matches;
+    private List<Match>? matches;
+    private List<User>? users;
+    private int loggedInUserId; // The ID of the logged-in user
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        Matches = await _client.GetFromJsonAsync<List<Match>>($"{Endpoints.MatchesEndpoint}");
-        Matches.Count();
-        Console.Write(Matches.Count());
+        var result = await js.InvokeAsync<string>("sessionStorage.getItem", "loggedInUserId");
+        if (!string.IsNullOrEmpty(result) && int.TryParse(result, out int parsedUserId))
+        {
+            loggedInUserId = parsedUserId;
+        }
 
+        await LoadData();
     }
 
-    async Task Delete(int matchID)
+    private async Task LoadData()
     {
-        if (Matches != null)
+        var allMatches = await FetchAllMatches();
+        if (allMatches != null)
         {
-            var match = Matches.First(q => q.Id == matchID);
-            var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {match.Id}?");
-            if (confirm)
-            {
+            matches = allMatches.Where(m => m.User1Id == loggedInUserId || m.User2Id == loggedInUserId).ToList();
 
-                await _client.DeleteAsync($"{Endpoints.MatchesEndpoint}/{matchID}");
-                await OnInitializedAsync();
+            var userIds = matches.Select(m => m.User1Id).Concat(matches.Select(m => m.User2Id)).Distinct();
+            users = await FetchUserDetails(userIds);
+        }
+        else
+        {
+            matches = new List<Match>();
+        }
+    }
+
+    private async Task<List<Match>> FetchAllMatches()
+    {
+        var response = await _client.GetFromJsonAsync<List<Match>>(Endpoints.MatchesEndpoint);
+        return response ?? new List<Match>();
+    }
+
+    private async Task<List<User>> FetchUserDetails(IEnumerable<int> userIds)
+    {
+        var userDetails = new List<User>();
+
+        foreach (var userId in userIds)
+        {
+            var user = await _client.GetFromJsonAsync<User>($"{Endpoints.UsersEndpoint}/{userId}");
+            if (user != null)
+            {
+                userDetails.Add(user);
             }
         }
+
+        return userDetails;
     }
+
+    // Define the Match and User classes as per your application's structure
+    
 }
-
-
-   
-
-
-

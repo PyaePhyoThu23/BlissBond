@@ -42,5 +42,7 @@ namespace BlissBond.Server.Data
         }
 
         public DbSet<BlissBond.Shared.Domain.Request> Request { get; set; } = default!;
+
+        public DbSet<BlissBond.Shared.Domain.Message> Message { get; set; } = default!;
     }
 }

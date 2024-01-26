@@ -16,6 +16,8 @@ namespace BlissBond.Server.IRepository
         IGenericRepository<Match> Matches { get; }
 
         IGenericRepository<Request> Requests { get; }
-       
+
+        IGenericRepository<Message> Messages { get; }
+
     }
 }
