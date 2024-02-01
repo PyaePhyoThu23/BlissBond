@@ -1,3 +1,140 @@
+/* /Pages/Matches/Index.razor.rz.scp.css */
+.card-title[b-w8lykkrlii] {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.table[b-w8lykkrlii] {
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.thead-dark[b-w8lykkrlii] {
+    background-color: #343a40;
+    color: white;
+}
+
+.table th[b-w8lykkrlii], .table td[b-w8lykkrlii] {
+    vertical-align: middle;
+}
+
+.btn-sm[b-w8lykkrlii] {
+    margin: 0 5px;
+}
+
+.btn-info[b-w8lykkrlii] {
+    color: white;
+}
+
+.btn-warning[b-w8lykkrlii] {
+    color: black;
+}
+
+.alert-info[b-w8lykkrlii] {
+    font-size: 1.25rem;
+}
+
+.text-center[b-w8lykkrlii] {
+    text-align: center;
+}
+
+.gradient-background[b-w8lykkrlii] {
+    /* This creates a gradient from pink to a light orange */
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    /* Ensure enough contrast for the content */
+    color: #fff;
+}
+/* /Pages/Users/Index.razor.rz.scp.css */
+
+
+.form-outline[b-w5jrheabbo] {
+    position: relative;
+}
+
+.form-label[b-w5jrheabbo] {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.form-control-lg[b-w5jrheabbo] {
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+}
+
+.shadow-2-strong[b-w5jrheabbo] {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+/* /Pages/Users/SendRequest.razor.rz.scp.css */
+.request-page[b-5pxmzsxs85] {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h3[b-5pxmzsxs85] {
+    text-align: center;
+    color: #4A4A4A;
+    margin-bottom: 20px;
+}
+
+.user-id-display[b-5pxmzsxs85] {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.request-table-container[b-5pxmzsxs85] {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table[b-5pxmzsxs85] {
+    margin-bottom: 0;
+    color: #333;
+}
+
+    .table thead th[b-5pxmzsxs85] {
+        background-color: #eaeaea;
+    }
+
+    .table tbody tr[b-5pxmzsxs85] {
+        border-bottom: 1px solid #eaeaea;
+    }
+
+        .table tbody tr:last-child[b-5pxmzsxs85] {
+            border-bottom: none;
+        }
+
+.btn-request[b-5pxmzsxs85] {
+    background-color: #008CBA;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-request:hover[b-5pxmzsxs85] {
+        background-color: #005f73;
+    }
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .request-page[b-5pxmzsxs85] {
+        padding: 10px;
+    }
+}
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-tugwtjr8zs] {
     position: relative;

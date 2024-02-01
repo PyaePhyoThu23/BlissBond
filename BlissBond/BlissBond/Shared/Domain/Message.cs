@@ -14,7 +14,7 @@ namespace BlissBond.Shared.Domain
         public DateTime Timestamp { get; set; } // The time when the message was sent
 
         // Navigation properties for Entity Framework (if you're using it)
-       public virtual ICollection<Match>? Matches { get; set; }
+        public virtual ICollection<Match>? Matches { get; set; }
        
     }
 }

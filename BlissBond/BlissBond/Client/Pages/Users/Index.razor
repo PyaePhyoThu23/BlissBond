@@ -4,63 +4,63 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<section class="vh-100" style="background-color: #eee;">
-    <div class="container h-100">
+
+
+<section class="vh-100 bg-gradient-custom">
+    <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-12 col-xl-11">
-                <div class="card text-black" style="border-radius: 25px;">
-                    <div class="card-body p-md-5">
-                        <div class="row justify-content-center">
-                            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                        <h3 class="mb-5">Sign Up</h3>
 
-                                <EditForm Model="@user" OnValidSubmit="CreateUser">
-                                    <DataAnnotationsValidator />
-                                    <ValidationSummary />
+                        <EditForm Model="@user" OnValidSubmit="CreateUser" class="text-start">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
 
-                                    <!-- FirstName -->
-                                    <div class="form-group">
-                                        <label>Your First Name</label>
-                                        <InputText @bind-Value="@user.FirstName" class="form-control" />
-                                        <ValidationMessage For="@(() => user.FirstName)" />
-                                    </div>
-
-                                    <!-- LastName -->
-                                    <div class="form-group">
-                                        <label>Your Last Name</label>
-                                        <InputText @bind-Value="@user.LastName" class="form-control" />
-                                        <ValidationMessage For="@(() => user.LastName)" />
-                                    </div>
-
-                                    <!-- Gender -->
-                                    <div class="form-group">
-                                        <label>Your Gender</label>
-                                        <InputText @bind-Value="@user.Gender" class="form-control" />
-                                        <ValidationMessage For="@(() => user.Gender)" />
-                                    </div>
-
-                                    <!-- Email -->
-                                    <div class="form-group">
-                                        <label>Your Email</label>
-                                        <InputText @bind-Value="@user.Email" class="form-control" />
-                                        <ValidationMessage For="@(() => user.Email)" />
-                                    </div>
-
-                                    <!-- Password -->
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <InputText @bind-Value="@user.Password" class="form-control" />
-                                        <ValidationMessage For="@(() => user.Password)" />
-                                    </div>
-
-                                    <!-- Submit Button -->
-                                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                                </EditForm>
-                                <a href="/users/create/signin" class="btn btn-primary">Log In</a>
-
+                            <!-- FirstName -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Your First Name</label>
+                                <InputText @bind-Value="@user.FirstName" class="form-control form-control-lg" />
+                                <ValidationMessage For="@(() => user.FirstName)" />
                             </div>
-                        </div>
+
+                            <!-- LastName -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Your Last Name</label>
+                                <InputText @bind-Value="@user.LastName" class="form-control form-control-lg" />
+                                <ValidationMessage For="@(() => user.LastName)" />
+                            </div>
+
+                            <!-- Gender -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Your Gender</label>
+                                <InputText @bind-Value="@user.Gender" class="form-control form-control-lg" />
+                                <ValidationMessage For="@(() => user.Gender)" />
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Your Email</label>
+                                <InputText @bind-Value="@user.Email" class="form-control form-control-lg" />
+                                <ValidationMessage For="@(() => user.Email)" />
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Password</label>
+                                <InputText type="password" @bind-Value="@user.Password" class="form-control form-control-lg" />
+                                <ValidationMessage For="@(() => user.Password)" />
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                                <a href="/users/create/signin" class="btn btn-secondary btn-lg">Log In</a>
+                            </div>
+                        </EditForm>
+
                     </div>
                 </div>
             </div>

@@ -1,0 +1,67 @@
+.request-page[b-5pxmzsxs85] {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h3[b-5pxmzsxs85] {
+    text-align: center;
+    color: #4A4A4A;
+    margin-bottom: 20px;
+}
+
+.user-id-display[b-5pxmzsxs85] {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.request-table-container[b-5pxmzsxs85] {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.table[b-5pxmzsxs85] {
+    margin-bottom: 0;
+    color: #333;
+}
+
+    .table thead th[b-5pxmzsxs85] {
+        background-color: #eaeaea;
+    }
+
+    .table tbody tr[b-5pxmzsxs85] {
+        border-bottom: 1px solid #eaeaea;
+    }
+
+        .table tbody tr:last-child[b-5pxmzsxs85] {
+            border-bottom: none;
+        }
+
+.btn-request[b-5pxmzsxs85] {
+    background-color: #008CBA;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-request:hover[b-5pxmzsxs85] {
+        background-color: #005f73;
+    }
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .request-page[b-5pxmzsxs85] {
+        padding: 10px;
+    }
+}

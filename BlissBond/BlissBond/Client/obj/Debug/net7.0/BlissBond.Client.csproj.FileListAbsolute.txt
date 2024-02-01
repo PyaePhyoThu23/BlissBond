@@ -3406,3 +3406,6 @@ C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\build-gz\dK6tT+EQ.gz
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\build-gz\rr3lQjZl.gz
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\build-gz\1rFgzx+y.gz
+C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Matches\Index.razor.rz.scp.css
+C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Users\Index.razor.rz.scp.css
+C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Users\SendRequest.razor.rz.scp.css

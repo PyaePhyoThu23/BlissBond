@@ -1,5 +1,31 @@
-﻿<h3>FormComponent</h3>
+﻿<h3>Match Form</h3>
+<EditForm Model="@match" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label>Match Status: </label>
+        <InputText @bind-Value="@match.MatchStatus" class="form-control" />
+        <ValidationMessage For="@(() => match.MatchStatus)" />
+
+        <label>Match Date: </label>
+        <InputDate @bind-Value="@match.MatchDate" class="form-control" />
+        <ValidationMessage For="@(() => match.MatchDate)" />
+
+        <label>User 1 ID: </label>
+        <InputNumber @bind-Value="@match.User1Id" class="form-control" />
+        <ValidationMessage For="@(() => match.User1Id)" />
+
+        <label>User 2 ID: </label>
+        <InputNumber @bind-Value="@match.User2Id" class="form-control" />
+        <ValidationMessage For="@(() => match.User2Id)" />
+    </div>
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+</EditForm>
 
 @code {
-
+    [Parameter] public Match? match { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
 }

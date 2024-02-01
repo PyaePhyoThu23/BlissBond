@@ -1,0 +1,46 @@
+﻿.card-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.table {
+    margin-top: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.thead-dark {
+    background-color: #343a40;
+    color: white;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.btn-sm {
+    margin: 0 5px;
+}
+
+.btn-info {
+    color: white;
+}
+
+.btn-warning {
+    color: black;
+}
+
+.alert-info {
+    font-size: 1.25rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.gradient-background {
+    /* This creates a gradient from pink to a light orange */
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    /* Ensure enough contrast for the content */
+    color: #fff;
+}

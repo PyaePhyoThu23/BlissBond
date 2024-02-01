@@ -1,5 +1,186 @@
-﻿<h3>Create</h3>
+﻿@page "/matches/{MatchUserId:int}"
+@inject HttpClient _client
+@inject IJSRuntime js
+@inject NavigationManager NavigationManager
+@attribute [Authorize]
+
+<div class="chat-wrapper">
+    <h3>Message Chat</h3>
+
+    @if (!initialized)
+    {
+        <p>Loading chat...</p>
+    }
+    else
+    {
+        <div class="chat-container">
+            <div class="messages">
+                @foreach (var message in messages)
+                {
+                    <div class="@GetMessageClass(message)">
+                        <div class="message-content">
+                            <strong>@GetSenderName(message.SenderId):</strong>
+                            @if (editingMessage != null && editingMessage.Id == message.Id)
+                            {
+                                <input type="text" @bind="newMessage" />
+                            }
+                            else
+                            {
+                                @message.Content
+                            }
+                        </div>
+                        <div class="message-timestamp">
+                            @message.Timestamp.ToString("HH:mm")
+                        </div>
+                        @if (message.SenderId == loggedInUserId)
+                        {
+                            <button @onclick="() => BeginEditMessage(message)">Edit</button>
+                            <button @onclick="() => DeleteMessage(message.Id)">Delete</button>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="message-input">
+                <input type="text" @bind="newMessage" placeholder="Type a message..." />
+                <button @onclick="SendMessage">Send</button>
+            </div>
+        </div>
+    }
+</div>
 
 @code {
+    [Parameter] public int MatchUserId { get; set; }
+    private List<Message> messages = new List<Message>();
+    private Dictionary<int, string> userNames = new Dictionary<int, string>();
+    private string newMessage;
+    private int loggedInUserId;
+    private User matchedUser;
+    private bool initialized = false;
+    private Message? editingMessage;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var userIdString = await js.InvokeAsync<string>("sessionStorage.getItem", "loggedInUserId");
+        if (!string.IsNullOrEmpty(userIdString) && int.TryParse(userIdString, out loggedInUserId))
+        {
+            await LoadUserNames();
+            await LoadMatchedUserInfo();
+            await LoadMessages();
+            initialized = true;
+        }
+    }
+
+    private async Task LoadUserNames()
+    {
+        var users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+        if (users != null)
+        {
+            foreach (var user in users)
+            {
+                userNames[user.Id] = $"{user.FirstName} {user.LastName}";
+            }
+        }
+    }
+
+    private async Task LoadMatchedUserInfo()
+    {
+        matchedUser = await _client.GetFromJsonAsync<User>($"{Endpoints.UsersEndpoint}/{MatchUserId}");
+        // Handle null user if necessary
+    }
+
+    private async Task LoadMessages()
+    {
+        try
+        {
+            var allMessages = await _client.GetFromJsonAsync<List<Message>>($"{Endpoints.MessagesEndpoint}");
+            if (allMessages != null)
+            {
+                messages = allMessages.Where(m =>
+                    (m.SenderId == loggedInUserId && m.ReceiverId == MatchUserId) ||
+                    (m.SenderId == MatchUserId && m.ReceiverId == loggedInUserId)).ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            // Handle exceptions
+        }
+    }
+
+    private string GetMessageClass(Message message)
+    {
+        return message.SenderId == loggedInUserId ? "message-sent" : "message-received";
+    }
+
+    private string GetSenderName(int senderId)
+    {
+        return userNames.TryGetValue(senderId, out var name) ? name : "Unknown";
+    }
+
+    private void BeginEditMessage(Message message)
+    {
+        editingMessage = message;
+        newMessage = message.Content;
+    }
+
+    private async Task SendMessage()
+    {
+        if (editingMessage != null)
+        {
+            await UpdateMessage();
+        }
+        else if (!string.IsNullOrEmpty(newMessage))
+        {
+            var message = new Message
+                {
+                    SenderId = loggedInUserId,
+                    ReceiverId = MatchUserId,
+                    Content = newMessage,
+                    Timestamp = DateTime.Now
+                };
+
+            var result = await _client.PostAsJsonAsync(Endpoints.MessagesEndpoint, message);
+            if (result.IsSuccessStatusCode)
+            {
+                newMessage = string.Empty;
+                await LoadMessages(); // Reload messages
+            }
+            else
+            {
+                // Handle sending error
+            }
+        }
+    }
+
+    private async Task UpdateMessage()
+    {
+        editingMessage.Content = newMessage;
+        var result = await _client.PutAsJsonAsync($"{Endpoints.MessagesEndpoint}/{editingMessage.Id}", editingMessage);
+        if (result.IsSuccessStatusCode)
+        {
+            newMessage = string.Empty;
+            editingMessage = null;
+            await LoadMessages(); // Reload messages
+        }
+        else
+        {
+            // Handle update error
+        }
+    }
+
+    private async Task DeleteMessage(int messageId)
+    {
+        var confirmed = await js.InvokeAsync<bool>("confirm", "Are you sure you want to delete this message?");
+        if (confirmed)
+        {
+            var result = await _client.DeleteAsync($"{Endpoints.MessagesEndpoint}/{messageId}");
+            if (result.IsSuccessStatusCode)
+            {
+                await LoadMessages(); // Reload messages
+            }
+            else
+            {
+                // Handle delete error
+            }
+        }
+    }
 }

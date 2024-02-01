@@ -18,7 +18,7 @@ namespace BlissBond.Shared.Domain
         public double? Popularity { get; set; }
         public string Password { get; set; }
         public int Id { get; set; }
-
+        
         public virtual ICollection<Match>? Matches { get; set;}
     }
 }

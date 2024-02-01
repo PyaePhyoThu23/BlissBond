@@ -1,7 +1,7 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
-      "hash": "sha256-uhotZszkBLq\/V8xt8UtpU6lGHEIqbqLsFUVGyelV2TU=",
+      "hash": "sha256-\/rBxROeL\/CuALD2vPkip5PWOji2Hjdp89Jxl3R3wbAk=",
       "url": "css\/app.css"
     },
     {
@@ -61,7 +61,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-ioxe7VqnkCvw7aLY+G3ueITPuhvzX+W2iga7gLn\/wb8=",
+      "hash": "sha256-gytP6cSTqr\/4SqFSUKAh9uH563yPnrD9bp911D5WSKA=",
       "url": "index.html"
     },
     {
@@ -69,7 +69,7 @@
       "url": "manifest.json"
     },
     {
-      "hash": "sha256-MaJi+L9VOfHDI8cBjC3znefhPRR6MYr6ci0Q6u\/PNLU=",
+      "hash": "sha256-2yqNjt1hiVvwpUqKH8tIrYFFBA\/5oyhoe4+4IDiRNBg=",
       "url": "BlissBond.Client.styles.css"
     },
     {
@@ -877,19 +877,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-TyIC95y3GO4x1dqiMx1DB0TZR1UdCrUDAg6dDHPD9mQ=",
+      "hash": "sha256-4WsGC+6IF58s+07gP7e5lNaeJWhh63dBECBkzBLsJq8=",
       "url": "_framework\/BlissBond.Shared.dll"
     },
     {
-      "hash": "sha256-3Rhopkjf5Fa+dQAkSWKARZ82lGJKZSBm4Gz6xB+GkeA=",
+      "hash": "sha256-BRR1yt0LY1iNBjurqmRWoKmmGsX10S9oP7vzLZSihtQ=",
       "url": "_framework\/BlissBond.Shared.pdb"
     },
     {
-      "hash": "sha256-xpVdlFxWgrSSB0EcH9siIz0X8inAlwDjJjn3Krr3kdU=",
+      "hash": "sha256-630OZm8N9PvZVqxn\/N0TAKapEpPNxRgFjuHKxUZSsM0=",
       "url": "_framework\/BlissBond.Client.dll"
     },
     {
-      "hash": "sha256-kQdQyR30UD2VOKy7HPc7nBFZnYMxk8mVp9C6gyy86fE=",
+      "hash": "sha256-X6xCwUjE5ZWkK4o3pcCR9u9CXqbqO2wdHRBdt0IscSM=",
       "url": "_framework\/BlissBond.Client.pdb"
     },
     {
@@ -897,7 +897,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-IlG1cAmiVlFcx5pD\/MsEDpHXf1Sfg73\/rYR\/oi9QUtw=",
+      "hash": "sha256-4+rVMr7lG84Ax8jh5p1wf8CuZqxpf6ehwj0tMegVNEQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -905,5 +905,5 @@
       "url": "_content\/Microsoft.AspNetCore.Components.WebAssembly.Authentication\/AuthenticationService.js"
     }
   ],
-  "version": "+EYT3ETd"
+  "version": "eXGVGwX0"
 };

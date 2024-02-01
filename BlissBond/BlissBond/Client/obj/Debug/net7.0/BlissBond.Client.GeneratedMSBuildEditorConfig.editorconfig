@@ -56,10 +56,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xGb3JtQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Matches/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xJbmRleC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Requests/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVxdWVzdHNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -78,14 +74,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/FormComponent.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcRm9ybUNvbXBvbmVudC5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/Index.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcSW5kZXgucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/SendRequest.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcU2VuZFJlcXVlc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/Signin.razor]
@@ -107,6 +95,18 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Matches/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWF0Y2hlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-w8lykkrlii
+
+[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-w5jrheabbo
+
+[C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Pages/Users/SendRequest.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnNcU2VuZFJlcXVlc3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5pxmzsxs85
 
 [C:/Users/linmi/source/repos/BlissBond1/BlissBond/BlissBond/Client/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

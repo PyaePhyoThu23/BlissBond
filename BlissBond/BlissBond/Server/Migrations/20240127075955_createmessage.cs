@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlissBond.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class message : Migration
+    public partial class createmessage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -335,7 +335,7 @@ namespace BlissBond.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Matches",
                 columns: new[] { "Id", "DateCreated", "DateUpdated", "MatchDate", "MatchStatus", "MessageId", "User1Id", "User2Id", "UserId" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 26, 16, 30, 13, 35, DateTimeKind.Local).AddTicks(1834), "Just Friend", null, 1, 2, null });
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 27, 15, 59, 55, 234, DateTimeKind.Local).AddTicks(6043), "Just Friend", null, 1, 2, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

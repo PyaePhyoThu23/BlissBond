@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlissBond.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240126083013_message")]
-    partial class message
+    [Migration("20240127075955_createmessage")]
+    partial class createmessage
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,7 +147,7 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 26, 16, 30, 13, 35, DateTimeKind.Local).AddTicks(1834),
+                            MatchDate = new DateTime(2024, 1, 27, 15, 59, 55, 234, DateTimeKind.Local).AddTicks(6043),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
