@@ -19,6 +19,7 @@
                             <tr>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th></th>
                                 <th></th> <!-- Empty header for the request button column -->
                             </tr>
                         </thead>
@@ -26,8 +27,19 @@
                             @foreach (var user in Users)
                             {
                                 <tr>
+                                    <td>
+                                        @if (user.ProfilePictureData != null && user.ProfilePictureData.Length > 0)
+                                        {
+                                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="Profile Picture" style="height:50px; width:50px; object-fit:cover;" />
+                                        }
+                                        else
+                                        {
+                                            <i class="oi oi-person" aria-hidden="true"></i> <!-- This is an example using Open Iconic. You can replace it with your own default image or icon. -->
+                                        }
+                                    </td>
                                     <td>@user.FirstName</td>
                                     <td>@user.LastName</td>
+                                
                                     <td>
                                         <button class="btn-request" @onclick="() => Requestsend(id, user.Id)">
                                             Request

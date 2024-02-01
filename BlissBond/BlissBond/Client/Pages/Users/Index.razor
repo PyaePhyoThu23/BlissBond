@@ -1,4 +1,5 @@
 ﻿@page "/users/"
+@using Microsoft.AspNetCore.Components.Forms
 @inject HttpClient _client
 @inject NavigationManager _navManager
 @inject IJSRuntime js
@@ -53,6 +54,10 @@
                                 <InputText type="password" @bind-Value="@user.Password" class="form-control form-control-lg" />
                                 <ValidationMessage For="@(() => user.Password)" />
                             </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label">Profile Picture</label>
+                                <InputFile OnChange="@OnInputFileChange" class="form-control" />
+                            </div>
 
                             <!-- Submit Button -->
                             <div class="d-grid gap-2">
@@ -76,5 +81,29 @@
         await _client.PostAsJsonAsync(Endpoints.UsersEndpoint, user);
         _navManager.NavigateTo("/users/create/");
     }
+    private async Task OnInputFileChange(InputFileChangeEventArgs e)
+    {
+        var imageFiles = e.GetMultipleFiles();
+        if (imageFiles.Count > 0)
+        {
+            var imageFile = imageFiles.First();
+            // Check the file type
+            if (imageFile.ContentType == "image/jpeg" || imageFile.ContentType == "image/png")
+            {
+                using (var stream = imageFile.OpenReadStream(maxAllowedSize: 1024 * 1024 * 15)) // 15 MB limit
+                {
+                    byte[] buffer = new byte[imageFile.Size];
+                    await stream.ReadAsync(buffer, 0, (int)imageFile.Size);
+                    user.ProfilePictureData = buffer;
+                }
+            }
+            else
+            {
+                // Inform the user about the unsupported file type
+                await js.InvokeVoidAsync("alert", "Please upload a JPEG or PNG image.");
+            }
+        }
+    }
+
 }
 

@@ -65,3 +65,14 @@ h3 {
         padding: 10px;
     }
 }
+
+.oi-person {
+    font-size: 2rem; /* Adjust the size as needed */
+    width: 50px; /* Adjust to match the profile picture size */
+    height: 50px;
+    display: inline-block;
+    background: grey; /* A background color for the icon */
+    border-radius: 50%; /* Makes the icon circular */
+    text-align: center;
+    line-height: 50px; /* Vertically centers the icon */
+}

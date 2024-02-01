@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BlissBond.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class createmessage : Migration
+    public partial class inertimage : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -267,6 +267,7 @@ namespace BlissBond.Server.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Popularity = table.Column<double>(type: "float", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProfilePictureData = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     RequestId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -325,17 +326,17 @@ namespace BlissBond.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Bio", "DateCreated", "DateUpdated", "Email", "FirstName", "Gender", "LastName", "Location", "Nickname", "Password", "Popularity", "RequestId" },
+                columns: new[] { "Id", "Bio", "DateCreated", "DateUpdated", "Email", "FirstName", "Gender", "LastName", "Location", "Nickname", "Password", "Popularity", "ProfilePictureData", "RequestId" },
                 values: new object[,]
                 {
-                    { 1, "I am handsome", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "deana@gmail.com", "Dean", "M", "Winchester", "Jurong East", null, "1234", 3.5, null },
-                    { 2, "I am smart", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "marry@gmail.com", "Marry", "F", "Tan", "Jurong West", "haha", "5678", 5.0, null }
+                    { 1, "I am handsome", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "deana@gmail.com", "Dean", "M", "Winchester", "Jurong East", null, "1234", 3.5, null, null },
+                    { 2, "I am smart", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "marry@gmail.com", "Marry", "F", "Tan", "Jurong West", "haha", "5678", 5.0, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Matches",
                 columns: new[] { "Id", "DateCreated", "DateUpdated", "MatchDate", "MatchStatus", "MessageId", "User1Id", "User2Id", "UserId" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 1, 27, 15, 59, 55, 234, DateTimeKind.Local).AddTicks(6043), "Just Friend", null, 1, 2, null });
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 2, 1, 17, 8, 37, 385, DateTimeKind.Local).AddTicks(2031), "Just Friend", null, 1, 2, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

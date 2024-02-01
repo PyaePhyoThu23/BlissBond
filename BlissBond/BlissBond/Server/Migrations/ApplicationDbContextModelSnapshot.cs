@@ -144,7 +144,7 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 1, 27, 15, 59, 55, 234, DateTimeKind.Local).AddTicks(6043),
+                            MatchDate = new DateTime(2024, 2, 1, 17, 8, 37, 385, DateTimeKind.Local).AddTicks(2031),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
@@ -256,6 +256,9 @@ namespace BlissBond.Server.Migrations
 
                     b.Property<double?>("Popularity")
                         .HasColumnType("float");
+
+                    b.Property<byte[]>("ProfilePictureData")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int?>("RequestId")
                         .HasColumnType("int");
