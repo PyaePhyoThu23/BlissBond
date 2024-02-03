@@ -92,6 +92,8 @@ namespace BlissBond.Server.Controllers
             {
                 return NotFound(); 
             }
+            await _unitOfWork.Messages.Delete(id);
+            await _unitOfWork.Save(HttpContext);
             return NoContent();
         }
 

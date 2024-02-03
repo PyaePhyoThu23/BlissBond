@@ -1,4 +1,4 @@
-﻿@page "/matches/{MatchUserId:int}"
+﻿@page "/matches/{MatchId:int}"
 @inject HttpClient _client
 @inject IJSRuntime js
 @inject NavigationManager NavigationManager
@@ -19,24 +19,16 @@
                 {
                     <div class="@GetMessageClass(message)">
                         <div class="message-content">
-                            <strong>@GetSenderName(message.SenderId):</strong>
-                            @if (editingMessage != null && editingMessage.Id == message.Id)
+                            <strong>@GetSenderName(message.SenderId):</strong> @message.Content
+                            @if (message.SenderId == loggedInUserId)
                             {
-                                <input type="text" @bind="newMessage" />
-                            }
-                            else
-                            {
-                                @message.Content
+                                <button @onclick="() => EditMessage(message)">Edit</button>
+                                <button @onclick="() => DeleteMessage(message.Id)">Delete</button>
                             }
                         </div>
                         <div class="message-timestamp">
                             @message.Timestamp.ToString("HH:mm")
                         </div>
-                        @if (message.SenderId == loggedInUserId)
-                        {
-                            <button @onclick="() => BeginEditMessage(message)">Edit</button>
-                            <button @onclick="() => DeleteMessage(message.Id)">Delete</button>
-                        }
                     </div>
                 }
             </div>
@@ -49,14 +41,15 @@
 </div>
 
 @code {
-    [Parameter] public int MatchUserId { get; set; }
+    [Parameter] public int MatchId { get; set; }
     private List<Message> messages = new List<Message>();
     private Dictionary<int, string> userNames = new Dictionary<int, string>();
     private string newMessage;
     private int loggedInUserId;
-    private User matchedUser;
+    private Match match;
+    private int MatchUserId;
     private bool initialized = false;
-    private Message? editingMessage;
+    private System.Threading.Timer? pollingTimer;
 
     protected override async Task OnInitializedAsync()
     {
@@ -67,7 +60,18 @@
             await LoadMatchedUserInfo();
             await LoadMessages();
             initialized = true;
+
+            pollingTimer = new Timer(Callback, null, 0, 5000); // Poll every 5 seconds
         }
+    }
+
+    private void Callback(object? state)
+    {
+        InvokeAsync(async () =>
+        {
+            await LoadMessages();
+            StateHasChanged();
+        });
     }
 
     private async Task LoadUserNames()
@@ -77,15 +81,24 @@
         {
             foreach (var user in users)
             {
-                userNames[user.Id] = $"{user.FirstName} {user.LastName}";
+                userNames[user.Id] = user.FirstName; // or FullName etc.
             }
         }
     }
 
     private async Task LoadMatchedUserInfo()
     {
-        matchedUser = await _client.GetFromJsonAsync<User>($"{Endpoints.UsersEndpoint}/{MatchUserId}");
-        // Handle null user if necessary
+        match = await _client.GetFromJsonAsync<Match>($"{Endpoints.MatchesEndpoint}/{MatchId}");
+
+        if (match != null)
+        {
+            // Set MatchUserId to the ID of the other user in the match
+            MatchUserId = (match.User1Id == loggedInUserId) ? match.User2Id : match.User1Id;
+        }
+        else
+        {
+            // Handle the case where the match is null if necessary
+        }
     }
 
     private async Task LoadMessages()
@@ -93,11 +106,12 @@
         try
         {
             var allMessages = await _client.GetFromJsonAsync<List<Message>>($"{Endpoints.MessagesEndpoint}");
+
             if (allMessages != null)
             {
                 messages = allMessages.Where(m =>
-                    (m.SenderId == loggedInUserId && m.ReceiverId == MatchUserId) ||
-                    (m.SenderId == MatchUserId && m.ReceiverId == loggedInUserId)).ToList();
+                    (m.SenderId == loggedInUserId || m.ReceiverId == MatchUserId) ||
+                    (m.SenderId == MatchUserId || m.ReceiverId == loggedInUserId)).ToList();
             }
         }
         catch (Exception ex)
@@ -116,19 +130,9 @@
         return userNames.TryGetValue(senderId, out var name) ? name : "Unknown";
     }
 
-    private void BeginEditMessage(Message message)
-    {
-        editingMessage = message;
-        newMessage = message.Content;
-    }
-
     private async Task SendMessage()
     {
-        if (editingMessage != null)
-        {
-            await UpdateMessage();
-        }
-        else if (!string.IsNullOrEmpty(newMessage))
+        if (!string.IsNullOrEmpty(newMessage))
         {
             var message = new Message
                 {
@@ -151,19 +155,21 @@
         }
     }
 
-    private async Task UpdateMessage()
+    public void Dispose()
     {
-        editingMessage.Content = newMessage;
-        var result = await _client.PutAsJsonAsync($"{Endpoints.MessagesEndpoint}/{editingMessage.Id}", editingMessage);
-        if (result.IsSuccessStatusCode)
+        pollingTimer?.Dispose();
+    }
+
+    private async Task EditMessage(Message messageToEdit)
+    {
+        // Prompt the user for the new message content
+        var newContent = await js.InvokeAsync<string>("prompt", "Edit your message:", messageToEdit.Content);
+
+        if (!string.IsNullOrEmpty(newContent))
         {
-            newMessage = string.Empty;
-            editingMessage = null;
-            await LoadMessages(); // Reload messages
-        }
-        else
-        {
-            // Handle update error
+            messageToEdit.Content = newContent;
+            await _client.PutAsJsonAsync($"{Endpoints.MessagesEndpoint}/{messageToEdit.Id}", messageToEdit);
+            await LoadMessages();
         }
     }
 
@@ -172,15 +178,8 @@
         var confirmed = await js.InvokeAsync<bool>("confirm", "Are you sure you want to delete this message?");
         if (confirmed)
         {
-            var result = await _client.DeleteAsync($"{Endpoints.MessagesEndpoint}/{messageId}");
-            if (result.IsSuccessStatusCode)
-            {
-                await LoadMessages(); // Reload messages
-            }
-            else
-            {
-                // Handle delete error
-            }
+            await _client.DeleteAsync($"{Endpoints.MessagesEndpoint}/{messageId}");
+            await LoadMessages();
         }
     }
 }

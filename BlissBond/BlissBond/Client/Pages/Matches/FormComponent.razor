@@ -11,13 +11,7 @@
         <InputDate @bind-Value="@match.MatchDate" class="form-control" />
         <ValidationMessage For="@(() => match.MatchDate)" />
 
-        <label>User 1 ID: </label>
-        <InputNumber @bind-Value="@match.User1Id" class="form-control" />
-        <ValidationMessage For="@(() => match.User1Id)" />
 
-        <label>User 2 ID: </label>
-        <InputNumber @bind-Value="@match.User2Id" class="form-control" />
-        <ValidationMessage For="@(() => match.User2Id)" />
     </div>
     <button type="submit" class="btn btn-success btn-block">
         @ButtonText

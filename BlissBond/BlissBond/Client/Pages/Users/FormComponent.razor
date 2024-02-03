@@ -3,6 +3,7 @@
 	<DataAnnotationsValidator />
 	<ValidationSummary />
 	<div class="form-group">
+
 		<label>FirstName: </label>
 		<div>
 			<InputText @bind-Value="@user.FirstName" class="form-control" />
@@ -43,7 +44,14 @@
 			<InputText @bind-Value="@user.Password" class="form-control" />
 			<ValidationMessage For="@(()=>user.Password)" />
 		</div>
-
+		<label>Profile Picture: </label>
+		<div>
+			<InputFile @ref="inputFile" class="form-control" OnChange="@OnInputFileChange" />
+			@if (user.ProfilePictureData != null)
+			{
+				<img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="Profile Picture" style="height:100px; width:100px; object-fit:cover;" />
+			}
+		</div>
 	</div>
 	<button type="submit" class="btn btn-success btn-block">
 		@ButtonText
@@ -53,5 +61,16 @@
 	[Parameter] public User? user { get; set; }
 	[Parameter] public string ButtonText { get; set; } = "Save";
 	[Parameter] public EventCallback OnValidSubmit { get; set; }
+	private InputFile? inputFile;
 
+	private async Task OnInputFileChange(InputFileChangeEventArgs e)
+	{
+		var file = e.File;
+		if (file != null)
+		{
+			using var stream = new MemoryStream();
+			await file.OpenReadStream().CopyToAsync(stream);
+			user.ProfilePictureData = stream.ToArray();
+		}
+	}
 }

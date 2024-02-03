@@ -17,7 +17,9 @@ else if (matches.Any())
         <table class="table">
             <thead class="thead-dark">
                 <tr>
+                    <th></th> <!-- Column for profile picture -->
                     <th>User1</th>
+                    <th></th>
                     <th>User2</th>
                     <th>Match Status</th>
                     <th>Actions</th>
@@ -29,7 +31,28 @@ else if (matches.Any())
                     var user1 = users.FirstOrDefault(u => u.Id == match.User1Id);
                     var user2 = users.FirstOrDefault(u => u.Id == match.User2Id);
                     <tr>
+                        <td>
+                            @if (user1?.ProfilePictureData != null && user1.ProfilePictureData.Length > 0)
+                            {
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(user1.ProfilePictureData)" alt="Profile Picture" style="height:50px; width:50px; object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
+                            }
+                        </td>
+                       
                         <td>@(user1?.FirstName ?? "Unknown")</td>
+                        <td>
+                            @if (user2?.ProfilePictureData != null && user2.ProfilePictureData.Length > 0)
+                            {
+                                <img src="data:image/jpeg;base64,@Convert.ToBase64String(user2.ProfilePictureData)" alt="Profile Picture" style="height:50px; width:50px; object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
+                            }
+                        </td>
                         <td>@(user2?.FirstName ?? "Unknown")</td>
                         <td>@match.MatchStatus</td>
                         <td>
@@ -53,6 +76,7 @@ else
 {
     <p class="text-center">No matches found.</p>
 }
+
 
 @code {
     private List<Match>? matches;
@@ -124,15 +148,32 @@ else
         var confirmed = await js.InvokeAsync<bool>("confirm", "Are you sure you want to delete this match?");
         if (confirmed)
         {
-            var response = await _client.DeleteAsync($"{Endpoints.MatchesEndpoint}/{matchId}");
-            if (response.IsSuccessStatusCode)
+            // Fetch the match details to get User1Id and User2Id
+            var matchToDelete = matches.FirstOrDefault(m => m.Id == matchId);
+            if (matchToDelete != null)
             {
-                // Optionally, reload the list or remove the item from the list
-                await LoadData();
-            }
-            else
-            {
-                // Handle error response
+                // Delete all requests between User1 and User2
+                var requestsToDelete = await _client.GetFromJsonAsync<List<Request>>($"{Endpoints.RequestsEndpoint}");
+                var filteredRequests = requestsToDelete.Where(r =>
+                    (r.RequestorId == matchToDelete.User1Id && r.RecieverId == matchToDelete.User2Id) ||
+                    (r.RequestorId == matchToDelete.User2Id && r.RecieverId == matchToDelete.User1Id)
+                ).ToList();
+
+                foreach (var req in filteredRequests)
+                {
+                    await _client.DeleteAsync($"{Endpoints.RequestsEndpoint}/{req.Id}");
+                }
+
+                // Delete the match
+                var response = await _client.DeleteAsync($"{Endpoints.MatchesEndpoint}/{matchId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    await LoadData(); // Reload data to reflect changes
+                }
+                else
+                {
+                    // Handle error response
+                }
             }
         }
     }

@@ -144,7 +144,7 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 2, 1, 17, 8, 37, 385, DateTimeKind.Local).AddTicks(2031),
+                            MatchDate = new DateTime(2024, 2, 3, 16, 48, 42, 210, DateTimeKind.Local).AddTicks(9343),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
@@ -196,6 +196,9 @@ namespace BlissBond.Server.Migrations
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RecieverId")
                         .HasColumnType("int");

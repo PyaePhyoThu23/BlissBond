@@ -3409,3 +3409,4 @@ C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Matches\Index.razor.rz.scp.css
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Users\Index.razor.rz.scp.css
 C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Users\SendRequest.razor.rz.scp.css
+C:\Users\linmi\source\repos\BlissBond1\BlissBond\BlissBond\Client\obj\Debug\net7.0\scopedcss\Pages\Requests\Index.razor.rz.scp.css

@@ -4,37 +4,62 @@
 @attribute [Authorize]
 
 <h1 class="h3 mb-3 fw-normal">User ID: @userId</h1>
-
+<a href=" /requests/list" class="btn btn-secondary">
+    Your Request List
+</a>
 @if (requests != null && requests.Any())
 {
     <table class="table">
         <thead>
             <tr>
+                <th></th>
                 <th>Request Name</th>
+                <th></th>
                 <th>Receiver Name</th>
                 <th>Status</th>
-               
                 <!-- Other request table headers -->
             </tr>
         </thead>
         <tbody>
-          
             @foreach (var request in requests)
             {
                 var requestor = users.FirstOrDefault(u => u.Id == request.RequestorId);
                 var receiver = users.FirstOrDefault(u => u.Id == request.RecieverId);
 
                 <tr>
+                    <td>
+                        @if (requestor?.ProfilePictureData != null && requestor.ProfilePictureData.Length > 0)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(requestor.ProfilePictureData)" alt="Requestor Profile Picture" class="user-profile-pic" />
+                        }
+                        else
+                        {
+                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
+                        }
+                    </td>
                     <td>@requestor?.FirstName</td>
+                    <td>
+                        @if (receiver?.ProfilePictureData != null && receiver.ProfilePictureData.Length > 0)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(receiver.ProfilePictureData)" alt="Receiver Profile Picture" class="user-profile-pic" />
+                        }
+                        else
+                        {
+                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
+                        }
+                    </td>
                     <td>@receiver?.FirstName</td>
                     <td>@request.Status</td> <!-- Display the request status -->
+                    
                     <td>
-                        <button class="btn btn-success" @onclick="() => AcceptRequest(request.Id)">Accept</button> <!-- Accept button -->
-                        <button class="btn btn-danger" @onclick="() => RejectRequest(request.Id)">Reject</button> <!-- Reject button -->
+                        @if (!respondedRequests.Contains(request.Id))
+                        {
+                            <button class="btn btn-success" @onclick="() => AcceptRequest(request.Id)">Accept</button>
+                            <button class="btn btn-danger" @onclick="() => RejectRequest(request.Id)">Reject</button>
+                        }
                     </td>
                 </tr>
             }
-
         </tbody>
     </table>
 }
@@ -47,6 +72,8 @@ else
     private int userId; // Variable to store the user ID
     private List<Request> requests; // List to store the retrieved requests
     private List<User> users;
+    private HashSet<int> respondedRequests = new HashSet<int>();
+
     protected override async Task OnInitializedAsync()
     {
         // Retrieve the user ID from session storage using JavaScript Interop
@@ -67,8 +94,8 @@ else
         // Make an HTTP request to retrieve the requests
         var response = await _client.GetFromJsonAsync<List<Request>>($"{Endpoints.RequestsEndpoint}");
 
-        // Filter the requests based on the user ID
-        requests = response.Where(r => r.RecieverId == userId).ToList();
+        // Filter the requests based on the user ID and status "Pending"
+        requests = response.Where(r => r.RecieverId == userId && r.Status == "Pending").ToList();
 
         users = await FetchUserDetails(requests.Select(r => r.RequestorId).Concat(requests.Select(r => r.RecieverId)).Distinct());
     }
@@ -108,6 +135,8 @@ else
                     MatchStatus = "Matched"
                 };
             await _client.PostAsJsonAsync(Endpoints.MatchesEndpoint, match);
+
+            respondedRequests.Add(requestId);
         }
     }
 
@@ -120,6 +149,7 @@ else
         {
             request.Status = "Rejected";
             await _client.PutAsJsonAsync($"{Endpoints.RequestsEndpoint}/{requestId}", request);
+            respondedRequests.Add(requestId);
         }
     }
 }
