@@ -6,16 +6,13 @@
 @attribute [Authorize]
 
 
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-4 p-md-5 text-center">
 
-<section class="vh-100 bg-gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-8 col-lg-6 col-xl-5">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
-
-                        <h3 class="mb-5">Sign Up</h3>
-
+                    <h3 class="mb-4 mb-md-5">Sign Up</h3>
                         <EditForm Model="@user" OnValidSubmit="CreateUser" class="text-start">
                             <DataAnnotationsValidator />
                             <ValidationSummary />
@@ -65,14 +62,12 @@
                                 <a href="/users/create/signin" class="btn btn-secondary btn-lg">Log In</a>
                             </div>
                         </EditForm>
-
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
+</div>
+ 
 @code {
     User user = new User();
 

@@ -18,7 +18,7 @@ namespace BlissBond.Server.Configurations.Entities
                     Bio = "I am handsome",
                     Nickname = null,
                     Location = "Jurong East",
-                    Popularity = 3.5,
+                    Hobby = null,
                     Password = "1234",
                     Email = "deana@gmail.com"
                 },
@@ -31,7 +31,7 @@ namespace BlissBond.Server.Configurations.Entities
                     Bio = "I am smart",
                     Nickname = "haha",
                     Location = "Jurong West",
-                    Popularity = 5,
+                    Hobby= null,
                     Password = "5678",
                     Email = "marry@gmail.com"
                 }

@@ -1,32 +1,39 @@
 ﻿@page "/users/view/{id:int}"
 @inject HttpClient _client
 
-<h3>User Profile</h3>
+<div class="profile-container">
+   
 
-@if (user != null)
-{
-    <div>
-        @if (user.ProfilePictureData != null && user.ProfilePictureData.Length > 0)
-        {
-            <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="Profile Picture" style="height:100px; width:100px; object-fit:cover;" />
-        }
-        else
-        {
-            <i class="oi oi-person" aria-hidden="true" style="font-size: 100px;"></i> <!-- Display a default icon if no picture exists -->
-        }
-        <p>Name: @user.FirstName @user.LastName</p>
-        <p>Gender: @user.Gender</p>
-        <p>Bio: @user.Bio</p>
-        <p>Nickname: @user.Nickname</p>
-        <p>Location: @user.Location</p>
-        <p>Popularity: @user.Popularity</p>
-        <!-- Add more fields as needed -->
-    </div>
-}
-else
-{
-    <p>Loading...</p>
-}
+    @if (user != null)
+    {
+        <div class="profile-header">
+            @if (user.ProfilePictureData != null && user.ProfilePictureData.Length > 0)
+            {
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="Profile Picture" class="profile-picture" />
+            }
+            else
+            {
+                <i class="oi oi-person default-profile-picture"></i>
+            }
+            <div class="profile-info">
+                <p><i class="profile-icon oi oi-person"></i><strong>Name:</strong> @user.FirstName @user.LastName</p>
+                <p><i class="profile-icon oi oi-brightness"></i><strong>Gender:</strong> @user.Gender</p>
+                <!-- ... other fields ... -->
+            </div>
+        </div>
+        <div class="profile-details">
+            <p><i class="profile-icon oi oi-book"></i><strong>Bio:</strong> @user.Bio</p>
+            <p><i class="profile-icon oi oi-tag"></i><strong>Nickname:</strong> @user.Nickname</p>
+            <p><i class="profile-icon oi oi-map-marker"></i><strong>Location:</strong> @user.Location</p>
+            <p><i class="profile-icon oi oi-star"></i><strong>Hobby</strong> @user.Hobby</p>
+            <!-- ... other fields ... -->
+        </div>
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+</div>
 
 @code {
     [Parameter] public int id { get; set; }

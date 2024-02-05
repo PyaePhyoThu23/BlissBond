@@ -1,78 +1,88 @@
-﻿.request-page {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+﻿.container {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-h3 {
-    text-align: center;
-    color: #4A4A4A;
+.user-profile-section {
+    flex-basis: 100%; /* This ensures the section takes full width */
+    background-color: #CAA6A6; /* Background color for the user profile section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-.user-id-display {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    color: #555;
+.profile-picture, .default-profile-picture {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.request-table-container {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+.requests-section {
+    flex-grow: 1;
+   
+    padding: 20px; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    max-height: 400px; /* Set a maximum height for the section */
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
 }
 
-.table {
-    margin-bottom: 0;
-    color: #333;
+.user-request {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-    .table thead th {
-        background-color: #eaeaea;
-    }
-
-    .table tbody tr {
-        border-bottom: 1px solid #eaeaea;
-    }
-
-        .table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-.btn-request {
-    background-color: #008CBA;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .btn-request:hover {
-        background-color: #005f73;
-    }
-
-/* Responsive Design */
-@media (max-width: 767px) {
-    .request-page {
-        padding: 10px;
-    }
-}
-
-.oi-person {
-    font-size: 2rem; /* Adjust the size as needed */
-    width: 50px; /* Adjust to match the profile picture size */
+.user-picture, .default-user-picture {
     height: 50px;
-    display: inline-block;
-    background: grey; /* A background color for the icon */
-    border-radius: 50%; /* Makes the icon circular */
-    text-align: center;
-    line-height: 50px; /* Vertically centers the icon */
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    margin-left: 15px;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+.btn-edit-profile {
+    margin-top: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    margin-right: 10px;
+}
+
+.btn-edit-profile, .btn-primary {
+    background-color: #944E63; /* Changed color for edit profile and request buttons */
+    color: white;
+    /* ... other styles ... */
+}
+
+.btn-view-profile {
+    background-color: #A267AC; /* New color for view profile button to complement the request button */
+    color: white;
+    /* ... other styles ... */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .user-profile-section, .requests-section {
+        flex-basis: 100%;
+    }
 }

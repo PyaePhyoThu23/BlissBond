@@ -65,6 +65,7 @@ else if (matches.Any())
                             <button class="btn btn-danger btn-sm" @onclick="() => DeleteMatch(match.Id)">
                                 Delete
                             </button>
+                            <button class="btn btn-view-profile" @onclick="() => ViewProfile(user2.Id)">View Profile</button>
                         </td>
                     </tr>
                 }
@@ -177,4 +178,10 @@ else
             }
         }
     }
+
+    private void ViewProfile(int userId)
+    {
+        NavigationManager.NavigateTo($"/users/view/{userId}");
+    }
+
 }

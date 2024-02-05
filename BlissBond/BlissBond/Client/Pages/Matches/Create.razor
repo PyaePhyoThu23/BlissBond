@@ -110,8 +110,8 @@
             if (allMessages != null)
             {
                 messages = allMessages.Where(m =>
-                    (m.SenderId == loggedInUserId || m.ReceiverId == MatchUserId) ||
-                    (m.SenderId == MatchUserId || m.ReceiverId == loggedInUserId)).ToList();
+                    (m.SenderId == loggedInUserId && m.ReceiverId == MatchUserId) ||
+                    (m.SenderId == MatchUserId && m.ReceiverId == loggedInUserId)).ToList();
             }
         }
         catch (Exception ex)

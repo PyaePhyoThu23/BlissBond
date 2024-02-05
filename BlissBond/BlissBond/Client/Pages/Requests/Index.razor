@@ -1,73 +1,46 @@
 ﻿@page "/requests/"
 @inject HttpClient _client
 @inject IJSRuntime js
+@inject NavigationManager _navManager
 @attribute [Authorize]
 
-<h1 class="h3 mb-3 fw-normal">User ID: @userId</h1>
+<h1>User ID: @userId</h1>
 <a href=" /requests/list" class="btn btn-secondary">
     Your Request List
 </a>
-@if (requests != null && requests.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Request Name</th>
-                <th></th>
-                <th>Receiver Name</th>
-                <th>Status</th>
-                <!-- Other request table headers -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var request in requests)
+<div class="container">
+    <div class="requests-section">
+        <h3>Requests</h3>
+        @if (requests != null && requests.Any())
+        {
+            foreach (var request in requests)
             {
-                var requestor = users.FirstOrDefault(u => u.Id == request.RequestorId);
-                var receiver = users.FirstOrDefault(u => u.Id == request.RecieverId);
-
-                <tr>
-                    <td>
-                        @if (requestor?.ProfilePictureData != null && requestor.ProfilePictureData.Length > 0)
-                        {
-                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(requestor.ProfilePictureData)" alt="Requestor Profile Picture" class="user-profile-pic" />
-                        }
-                        else
-                        {
-                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
-                        }
-                    </td>
-                    <td>@requestor?.FirstName</td>
-                    <td>
-                        @if (receiver?.ProfilePictureData != null && receiver.ProfilePictureData.Length > 0)
-                        {
-                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(receiver.ProfilePictureData)" alt="Receiver Profile Picture" class="user-profile-pic" />
-                        }
-                        else
-                        {
-                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
-                        }
-                    </td>
-                    <td>@receiver?.FirstName</td>
-                    <td>@request.Status</td> <!-- Display the request status -->
-                    
-                    <td>
-                        @if (!respondedRequests.Contains(request.Id))
-                        {
-                            <button class="btn btn-success" @onclick="() => AcceptRequest(request.Id)">Accept</button>
-                            <button class="btn btn-danger" @onclick="() => RejectRequest(request.Id)">Reject</button>
-                        }
-                    </td>
-                </tr>
+                <div class="user-request">
+                    @if (users.FirstOrDefault(u => u.Id == request.RequestorId)?.ProfilePictureData != null)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(users.FirstOrDefault(u => u.Id == request.RequestorId).ProfilePictureData)" alt="Requestor Profile Picture" class="user-picture" />
+                    }
+                    else
+                    {
+                        <i class="oi oi-person default-user-picture"></i>
+                    }
+                    <div class="requestor-info">
+                        <div class="requestor-name">@users.FirstOrDefault(u => u.Id == request.RequestorId)?.FirstName @users.FirstOrDefault(u => u.Id == request.RequestorId)?.LastName</div>
+                        <div class="actions">
+                            <button class="btn btn-view-profile" @onclick="() => ViewProfile(request.RequestorId)">View Profile</button>
+                            <button class="btn btn-primary" @onclick="() => AcceptRequest(request.Id)">Accept</button>
+                            <button class="btn btn-view-profile" @onclick="() => RejectRequest(request.Id)">Reject</button>
+                        </div>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No requests found for the user.</p>
-}
-
+        }
+        else
+        {
+            <div class="alert-alert-info">No requests found for the user.</div>
+        }
+    </div>
+</div>
 @code {
     private int userId; // Variable to store the user ID
     private List<Request> requests; // List to store the retrieved requests
@@ -152,4 +125,10 @@ else
             respondedRequests.Add(requestId);
         }
     }
+
+    private void ViewProfile(int userId)
+    {
+        _navManager.NavigateTo($"/users/view/{userId}");
+    }
+
 }

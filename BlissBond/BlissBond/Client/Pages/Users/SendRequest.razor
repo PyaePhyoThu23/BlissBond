@@ -2,70 +2,68 @@
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
-<h3 class="card-title">Requests</h3>
-<AuthorizeView>
-    <Authorized>
-        @if (CurrentUser == null)
-        {
-            <div class="alert-alert-info">Loading user info...</div>
-        }
-        else
-        {
-            <div style="text-align: left;">
-                @if (CurrentUser.ProfilePictureData != null && CurrentUser.ProfilePictureData.Length > 0)
+<div class="container">
+    <div class="user-profile-section">
+        <AuthorizeView>
+            <Authorized>
+                @if (CurrentUser == null)
                 {
-                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(CurrentUser.ProfilePictureData)" alt="Profile Picture" style="height:100px; width:100px; object-fit:cover;" />
+                    <div class="alert-alert-info">Loading user info...</div>
                 }
                 else
                 {
-                    <i class="oi oi-person" aria-hidden="true" style="font-size: 100px;"></i> <!-- Display a default icon if no picture exists -->
+                    <div class="user-profile">
+                        @if (CurrentUser.ProfilePictureData != null && CurrentUser.ProfilePictureData.Length > 0)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(CurrentUser.ProfilePictureData)" alt="Profile Picture" class="profile-picture" />
+                        }
+                        else
+                        {
+                            <i class="oi oi-person default-profile-picture"></i>
+                        }
+                        <div>
+                            <h2>@CurrentUser.FirstName @CurrentUser.LastName</h2>
+                            <button class="btn btn-edit-profile" @onclick="() => NavigateToEditProfile()">Edit Profile</button>
+                            <p>Logged-in User ID: @id</p>
+                        </div>
+                    </div>
                 }
-                <p>@CurrentUser.FirstName @CurrentUser.LastName</p>
-                <button class="btn btn-secondary" @onclick="() => NavigateToEditProfile()">Edit Profile</button>
-            </div>
-        }
+            </Authorized>
+        </AuthorizeView>
+    </div>
+
+    <div class="requests-section">
+        <h3>Requests</h3>
         @if (Users == null)
         {
-            <div class="alert-alert-info">Loading matches...</div>
+            <div class="alert-alert-info">Loading requests...</div>
         }
         else
         {
-            <p>Logged-in User ID: @id</p> <!-- Display the logged-in user's ID -->
-            <table class="table table-responsive">
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var user in Users)
-                    {    
-
-                        <tr>
-                            <td>
-                                @if (user.ProfilePictureData != null && user.ProfilePictureData.Length > 0)
-                                {
-                                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="Profile Picture" style="height:50px; width:50px; object-fit:cover;" />
-                                }
-                                else
-                                {
-                                    <i class="oi oi-person" aria-hidden="true"></i> <!-- Default icon if no picture -->
-                                }
-                            </td>
-                            <td>@user.FirstName</td>
-                            <td>@user.LastName</td>
-                            <td>
-                                <button class="btn btn-primary" @onclick="() => Requestsend(id, user.Id)">Request</button>
-                                <button class="btn btn-info" @onclick="() => ViewProfile(user.Id)">View Profile</button>
-                            </td>
-                        </tr>
+            @foreach (var user in Users)
+            {
+                <div class="user-request">
+                    @if (user.ProfilePictureData != null && user.ProfilePictureData.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.ProfilePictureData)" alt="User Profile Picture" class="user-picture" />
                     }
-                </tbody>
-            </table>
+                    else
+                    {
+                        <i class="oi oi-person default-user-picture"></i>
+                    }
+                    <div class="user-info">
+                        <h4>@user.FirstName @user.LastName</h4>
+                        <div class="actions">
+                            <button class="btn btn-primary" @onclick="() => Requestsend(id, user.Id)">Request</button>
+                            <button class="btn btn-view-profile" @onclick="() => ViewProfile(user.Id)">View Profile</button>
+                        </div>
+                    </div>
+                </div>
+            }
         }
-    </Authorized>
-</AuthorizeView>
+    </div>
+</div>
+
 @code {
     [Parameter] public int id { get; set; }
     private List<User>? Users;
@@ -89,7 +87,7 @@
         request.RecieverId = targetUserId;
 
         // Set the status to Pending
-        request.Status = "Pending"; 
+        request.Status = "Pending";
 
         // Call your logic to send the request using the request object
         await _client.PostAsJsonAsync(Endpoints.RequestsEndpoint, request);
@@ -128,7 +126,7 @@
         Users = allUsers.Where(u => !excludedUserIds.Contains(u.Id)).ToList();
     }
 
-      private void NavigateToEditProfile()
+    private void NavigateToEditProfile()
     {
         _navManager.NavigateTo($"/users/edit/{id}");
     }

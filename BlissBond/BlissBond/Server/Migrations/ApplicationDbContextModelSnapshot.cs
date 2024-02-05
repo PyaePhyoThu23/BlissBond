@@ -144,7 +144,7 @@ namespace BlissBond.Server.Migrations
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchDate = new DateTime(2024, 2, 3, 16, 48, 42, 210, DateTimeKind.Local).AddTicks(9343),
+                            MatchDate = new DateTime(2024, 2, 5, 17, 17, 22, 197, DateTimeKind.Local).AddTicks(9250),
                             MatchStatus = "Just Friend",
                             User1Id = 1,
                             User2Id = 2
@@ -243,6 +243,9 @@ namespace BlissBond.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Hobby")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -256,9 +259,6 @@ namespace BlissBond.Server.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("Popularity")
-                        .HasColumnType("float");
 
                     b.Property<byte[]>("ProfilePictureData")
                         .HasColumnType("varbinary(max)");
@@ -284,8 +284,7 @@ namespace BlissBond.Server.Migrations
                             Gender = "M",
                             LastName = "Winchester",
                             Location = "Jurong East",
-                            Password = "1234",
-                            Popularity = 3.5
+                            Password = "1234"
                         },
                         new
                         {
@@ -299,8 +298,7 @@ namespace BlissBond.Server.Migrations
                             LastName = "Tan",
                             Location = "Jurong West",
                             Nickname = "haha",
-                            Password = "5678",
-                            Popularity = 5.0
+                            Password = "5678"
                         });
                 });
 

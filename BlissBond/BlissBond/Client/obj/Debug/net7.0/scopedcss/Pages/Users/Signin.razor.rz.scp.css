@@ -1,0 +1,16 @@
+signin-form[b-oy7m2xvkap] {
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+/* Background image */
+body[b-oy7m2xvkap] {
+    
+    background-size: cover;
+}
+
+/* Responsive typography */
+h1[b-oy7m2xvkap] {
+    font-size: 2rem; /* Adjust font size here */
+}

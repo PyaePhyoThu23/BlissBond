@@ -1,78 +1,88 @@
-.request-page[b-5pxmzsxs85] {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.container[b-5pxmzsxs85] {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-h3[b-5pxmzsxs85] {
-    text-align: center;
-    color: #4A4A4A;
+.user-profile-section[b-5pxmzsxs85] {
+    flex-basis: 100%; /* This ensures the section takes full width */
+    background-color: #CAA6A6; /* Background color for the user profile section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
+}
+
+.user-profile[b-5pxmzsxs85] {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-.user-id-display[b-5pxmzsxs85] {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    color: #555;
+.profile-picture[b-5pxmzsxs85], .default-profile-picture[b-5pxmzsxs85] {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
-.request-table-container[b-5pxmzsxs85] {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+.requests-section[b-5pxmzsxs85] {
+    flex-grow: 1;
+   
+    padding: 20px; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    max-height: 400px; /* Set a maximum height for the section */
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
 }
 
-.table[b-5pxmzsxs85] {
-    margin-bottom: 0;
-    color: #333;
+.user-request[b-5pxmzsxs85] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-    .table thead th[b-5pxmzsxs85] {
-        background-color: #eaeaea;
-    }
-
-    .table tbody tr[b-5pxmzsxs85] {
-        border-bottom: 1px solid #eaeaea;
-    }
-
-        .table tbody tr:last-child[b-5pxmzsxs85] {
-            border-bottom: none;
-        }
-
-.btn-request[b-5pxmzsxs85] {
-    background-color: #008CBA;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .btn-request:hover[b-5pxmzsxs85] {
-        background-color: #005f73;
-    }
-
-/* Responsive Design */
-@media (max-width: 767px) {
-    .request-page[b-5pxmzsxs85] {
-        padding: 10px;
-    }
-}
-
-.oi-person[b-5pxmzsxs85] {
-    font-size: 2rem; /* Adjust the size as needed */
-    width: 50px; /* Adjust to match the profile picture size */
+.user-picture[b-5pxmzsxs85], .default-user-picture[b-5pxmzsxs85] {
     height: 50px;
-    display: inline-block;
-    background: grey; /* A background color for the icon */
-    border-radius: 50%; /* Makes the icon circular */
-    text-align: center;
-    line-height: 50px; /* Vertically centers the icon */
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info[b-5pxmzsxs85] {
+    margin-left: 15px;
+}
+
+.actions[b-5pxmzsxs85] {
+    margin-top: 10px;
+}
+
+.btn-edit-profile[b-5pxmzsxs85] {
+    margin-top: 10px;
+}
+
+.btn-primary[b-5pxmzsxs85], .btn-secondary[b-5pxmzsxs85] {
+    margin-right: 10px;
+}
+
+.btn-edit-profile[b-5pxmzsxs85], .btn-primary[b-5pxmzsxs85] {
+    background-color: #944E63; /* Changed color for edit profile and request buttons */
+    color: white;
+    /* ... other styles ... */
+}
+
+.btn-view-profile[b-5pxmzsxs85] {
+    background-color: #A267AC; /* New color for view profile button to complement the request button */
+    color: white;
+    /* ... other styles ... */
+}
+
+@media (max-width: 768px) {
+    .container[b-5pxmzsxs85] {
+        flex-direction: column;
+    }
+
+    .user-profile-section[b-5pxmzsxs85], .requests-section[b-5pxmzsxs85] {
+        flex-basis: 100%;
+    }
 }

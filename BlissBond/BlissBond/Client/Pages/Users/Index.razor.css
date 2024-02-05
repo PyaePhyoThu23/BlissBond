@@ -1,21 +1,41 @@
-﻿
+﻿@media (max-width: 768px) {
+    .btn-lg {
+        width: 100%;
+    }
 
-.form-outline {
-    position: relative;
+    .card-body {
+        padding: 2rem 1rem; /* Adjust padding for smaller screens */
+    }
+
+    .form-outline {
+        margin-bottom: 3rem; /* Increase spacing for touch targets */
+    }
 }
 
+/* For larger screens */
+@media (min-width: 769px) {
+    .card {
+        margin: auto; /* Center the card for medium to large screens */
+        width: 50%; /* Adjust the card width as per your design */
+    }
+}
+
+/* General Styles */
+.shadow-2-strong {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive text size */
 .form-label {
-    display: inline-block;
-    margin-bottom: .5rem;
+    font-size: 1rem;
 }
 
 .form-control-lg {
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
+    font-size: 1rem; /* Adjust the font size for form controls */
 }
 
-.shadow-2-strong {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+/* Adjust button sizes on different screens */
+.btn-lg {
+    padding: .375rem 1.75rem;
+    font-size: 1rem;
 }

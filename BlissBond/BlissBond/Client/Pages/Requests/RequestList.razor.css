@@ -1,0 +1,43 @@
+﻿.request-list-container {
+    margin-top: 20px;
+}
+
+.request-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-and-action {
+    display: flex;
+    align-items: flex-start;
+}
+
+.user-profile-pic {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.receiver-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.btn-unsent {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.default-user-picture {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}

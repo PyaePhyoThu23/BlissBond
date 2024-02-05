@@ -1,0 +1,43 @@
+.request-list-container[b-vw5neqvsid] {
+    margin-top: 20px;
+}
+
+.request-entry[b-vw5neqvsid] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-and-action[b-vw5neqvsid] {
+    display: flex;
+    align-items: flex-start;
+}
+
+.user-profile-pic[b-vw5neqvsid] {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.receiver-name[b-vw5neqvsid] {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.btn-unsent[b-vw5neqvsid] {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.default-user-picture[b-vw5neqvsid] {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}

@@ -3,69 +3,42 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h1 class="h3 mb-3 fw-normal">User ID: @userId</h1>
+<h1>User ID: @userId</h1>
 
-@if (requests != null && requests.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Request Name</th>
-                <th></th>
-                <th>Receiver Name</th>
-                <th>Status</th>
-                <!-- Other request table headers -->
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var request in requests)
-            {
-                var requestor = users.FirstOrDefault(u => u.Id == request.RequestorId);
-                var receiver = users.FirstOrDefault(u => u.Id == request.RecieverId);
-
-                <tr>
-                    <td>
-                        @if (requestor?.ProfilePictureData != null && requestor.ProfilePictureData.Length > 0)
-                        {
-                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(requestor.ProfilePictureData)" alt="Requestor Profile Picture" class="user-profile-pic" />
-                        }
-                        else
-                        {
-                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
-                        }
-                    </td>
-                    <td>@requestor?.FirstName</td>
-                    <td>
-                        @if (receiver?.ProfilePictureData != null && receiver.ProfilePictureData.Length > 0)
-                        {
-                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(receiver.ProfilePictureData)" alt="Receiver Profile Picture" class="user-profile-pic" />
-                        }
-                        else
-                        {
-                            <i class="oi oi-person" aria-hidden="true"></i> <!-- Display a default icon if no picture exists -->
-                        }
-                    </td>
-                    <td>@receiver?.FirstName</td>
-                    <td>@request.Status</td> <!-- Display the request status -->
-
-                    <td>
+<div class="request-list-container" style="max-height: 500px; overflow-y: auto;">
+    @if (requests != null && requests.Any())
+    {
+        @foreach (var request in requests)
+        {
+            var receiver = users.FirstOrDefault(u => u.Id == request.RecieverId);
+            <div class="request-entry">
+                <div class="profile-and-action">
+                    @if (receiver?.ProfilePictureData != null && receiver.ProfilePictureData.Length > 0)
+                    {
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(receiver.ProfilePictureData)" alt="Receiver Profile Picture" class="user-profile-pic" />
+                    }
+                    else
+                    {
+                        <i class="oi oi-person default-user-picture"></i>
+                    }
+                    <div class="receiver-details">
+                        <div class="receiver-name">@receiver?.FirstName @receiver?.LastName</div>
+                        <div class="request-status">Status: @(request.Status)</div>
                         @if (!respondedRequests.Contains(request.Id) && request.Status != "Rejected")
                         {
-                            <button class="btn btn-danger" @onclick="() => DeleteRequest(request.Id)">Unsend</button>
+                            
+                            <button class="btn btn-unsent" @onclick="() => DeleteRequest(request.Id)">Unsend</button>
                         }
-                    </td>
-
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No requests found for the user.</p>
-}
-
+                    </div>
+                </div> <!-- Closing tag for profile-and-action -->
+            </div> <!-- Closing tag for request-entry -->
+        }
+    }
+    else
+    {
+        <p>No requests found for the user.</p>
+    }
+</div> <!-- Closing tag for request-list-container -->
 @code {
     private int userId; // Variable to store the user ID
     private List<Request> requests; // List to store the retrieved requests

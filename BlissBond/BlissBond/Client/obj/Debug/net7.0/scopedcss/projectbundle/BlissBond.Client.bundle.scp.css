@@ -56,123 +56,320 @@
     line-height: 50px; /* Center icon vertically */
 }
 /* /Pages/Requests/Index.razor.rz.scp.css */
-.user-profile-pic[b-pew3fjs6zp] {
+.container[b-pew3fjs6zp] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.requests-section[b-pew3fjs6zp] {
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.user-request[b-pew3fjs6zp] {
+    display: flex;
+    align-items: center;
+    justify-content: start; /* Align to the left */
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.user-picture[b-pew3fjs6zp], .default-user-picture[b-pew3fjs6zp] {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px; /* Space between picture and name */
+}
+
+.requestor-info[b-pew3fjs6zp] {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+}
+
+.requestor-name[b-pew3fjs6zp] {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.actions[b-pew3fjs6zp] {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary[b-pew3fjs6zp], .btn-view-profile[b-pew3fjs6zp] {
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary[b-pew3fjs6zp] {
+    background-color: #944E63;
+}
+
+.btn-view-profile[b-pew3fjs6zp] {
+    background-color: #A267AC;
+}
+
+@media (max-width: 768px) {
+    .user-request[b-pew3fjs6zp] {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requestor-info[b-pew3fjs6zp] {
+        align-items: center;
+    }
+}
+/* /Pages/Requests/RequestList.razor.rz.scp.css */
+.request-list-container[b-vw5neqvsid] {
+    margin-top: 20px;
+}
+
+.request-entry[b-vw5neqvsid] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-and-action[b-vw5neqvsid] {
+    display: flex;
+    align-items: flex-start;
+}
+
+.user-profile-pic[b-vw5neqvsid] {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.receiver-name[b-vw5neqvsid] {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.btn-unsent[b-vw5neqvsid] {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.default-user-picture[b-vw5neqvsid] {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+/* /Pages/Users/Index.razor.rz.scp.css */
+@media (max-width: 768px) {
+    .btn-lg[b-w5jrheabbo] {
+        width: 100%;
+    }
+
+    .card-body[b-w5jrheabbo] {
+        padding: 2rem 1rem; /* Adjust padding for smaller screens */
+    }
+
+    .form-outline[b-w5jrheabbo] {
+        margin-bottom: 3rem; /* Increase spacing for touch targets */
+    }
+}
+
+/* For larger screens */
+@media (min-width: 769px) {
+    .card[b-w5jrheabbo] {
+        margin: auto; /* Center the card for medium to large screens */
+        width: 50%; /* Adjust the card width as per your design */
+    }
+}
+
+/* General Styles */
+.shadow-2-strong[b-w5jrheabbo] {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive text size */
+.form-label[b-w5jrheabbo] {
+    font-size: 1rem;
+}
+
+.form-control-lg[b-w5jrheabbo] {
+    font-size: 1rem; /* Adjust the font size for form controls */
+}
+
+/* Adjust button sizes on different screens */
+.btn-lg[b-w5jrheabbo] {
+    padding: .375rem 1.75rem;
+    font-size: 1rem;
+}
+/* /Pages/Users/SendRequest.razor.rz.scp.css */
+.container[b-5pxmzsxs85] {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-profile-section[b-5pxmzsxs85] {
+    flex-basis: 100%; /* This ensures the section takes full width */
+    background-color: #CAA6A6; /* Background color for the user profile section */
+    padding: 20px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
+}
+
+.user-profile[b-5pxmzsxs85] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture[b-5pxmzsxs85], .default-profile-picture[b-5pxmzsxs85] {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.requests-section[b-5pxmzsxs85] {
+    flex-grow: 1;
+   
+    padding: 20px; /* Padding for spacing */
+    border-radius: 10px; /* Rounded corners for aesthetics */
+    max-height: 400px; /* Set a maximum height for the section */
+    overflow-y: auto; /* Enable vertical scrollbar when content overflows */
+    margin-bottom: 20px; /* Space after the section */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
+}
+
+.user-request[b-5pxmzsxs85] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-picture[b-5pxmzsxs85], .default-user-picture[b-5pxmzsxs85] {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.oi-person[b-pew3fjs6zp] {
-    display: inline-block;
-    font-size: 2rem; /* Adjust as needed */
-    width: 50px;
-    height: 50px;
-    background-color: #f0f0f0; /* Light grey background, or you can choose a different placeholder color */
-    border-radius: 50%;
-    text-align: center;
-    line-height: 50px; /* Center the icon vertically */
-}
-/* /Pages/Users/Index.razor.rz.scp.css */
-
-
-.form-outline[b-w5jrheabbo] {
-    position: relative;
+.user-info[b-5pxmzsxs85] {
+    margin-left: 15px;
 }
 
-.form-label[b-w5jrheabbo] {
-    display: inline-block;
-    margin-bottom: .5rem;
+.actions[b-5pxmzsxs85] {
+    margin-top: 10px;
 }
 
-.form-control-lg[b-w5jrheabbo] {
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: .3rem;
+.btn-edit-profile[b-5pxmzsxs85] {
+    margin-top: 10px;
 }
 
-.shadow-2-strong[b-w5jrheabbo] {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-/* /Pages/Users/SendRequest.razor.rz.scp.css */
-.request-page[b-5pxmzsxs85] {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.btn-primary[b-5pxmzsxs85], .btn-secondary[b-5pxmzsxs85] {
+    margin-right: 10px;
 }
 
-h3[b-5pxmzsxs85] {
-    text-align: center;
-    color: #4A4A4A;
-    margin-bottom: 20px;
-}
-
-.user-id-display[b-5pxmzsxs85] {
-    background-color: #f2f2f2;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-    color: #555;
-}
-
-.request-table-container[b-5pxmzsxs85] {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.table[b-5pxmzsxs85] {
-    margin-bottom: 0;
-    color: #333;
-}
-
-    .table thead th[b-5pxmzsxs85] {
-        background-color: #eaeaea;
-    }
-
-    .table tbody tr[b-5pxmzsxs85] {
-        border-bottom: 1px solid #eaeaea;
-    }
-
-        .table tbody tr:last-child[b-5pxmzsxs85] {
-            border-bottom: none;
-        }
-
-.btn-request[b-5pxmzsxs85] {
-    background-color: #008CBA;
+.btn-edit-profile[b-5pxmzsxs85], .btn-primary[b-5pxmzsxs85] {
+    background-color: #944E63; /* Changed color for edit profile and request buttons */
     color: white;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    /* ... other styles ... */
 }
 
-    .btn-request:hover[b-5pxmzsxs85] {
-        background-color: #005f73;
-    }
-
-/* Responsive Design */
-@media (max-width: 767px) {
-    .request-page[b-5pxmzsxs85] {
-        padding: 10px;
-    }
+.btn-view-profile[b-5pxmzsxs85] {
+    background-color: #A267AC; /* New color for view profile button to complement the request button */
+    color: white;
+    /* ... other styles ... */
 }
 
-.oi-person[b-5pxmzsxs85] {
-    font-size: 2rem; /* Adjust the size as needed */
-    width: 50px; /* Adjust to match the profile picture size */
-    height: 50px;
-    display: inline-block;
-    background: grey; /* A background color for the icon */
-    border-radius: 50%; /* Makes the icon circular */
+@media (max-width: 768px) {
+    .container[b-5pxmzsxs85] {
+        flex-direction: column;
+    }
+
+    .user-profile-section[b-5pxmzsxs85], .requests-section[b-5pxmzsxs85] {
+        flex-basis: 100%;
+    }
+}
+/* /Pages/Users/Signin.razor.rz.scp.css */
+signin-form[b-oy7m2xvkap] {
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+/* Background image */
+body[b-oy7m2xvkap] {
+    
+    background-size: cover;
+}
+
+/* Responsive typography */
+h1[b-oy7m2xvkap] {
+    font-size: 2rem; /* Adjust font size here */
+}
+/* /Pages/Users/ViewUser.razor.rz.scp.css */
+.profile-container[b-mz3t19iqw9] {
+    padding: 20px;
+}
+
+.profile-header[b-mz3t19iqw9] {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture[b-mz3t19iqw9] {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.default-profile-picture[b-mz3t19iqw9] {
+    font-size: 150px;
+    margin-right: 20px;
+}
+
+.profile-info[b-mz3t19iqw9] {
+    flex-grow: 1;
+}
+
+.profile-details[b-mz3t19iqw9] {
+    margin-top: 20px;
+}
+
+    .profile-details p[b-mz3t19iqw9] {
+        margin-bottom: 10px;
+        align-items: center;
+        display: flex;
+    }
+
+.profile-icon[b-mz3t19iqw9] {
+    margin-right: 5px;
+    width: 20px;
     text-align: center;
-    line-height: 50px; /* Vertically centers the icon */
+}
+
+.profile-details p strong[b-mz3t19iqw9] {
+    font-weight: bold;
+    margin-right: 5px;
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-tugwtjr8zs] {
@@ -183,6 +380,7 @@ h3[b-5pxmzsxs85] {
 
 main[b-tugwtjr8zs] {
     flex: 1;
+    background-image: linear-gradient( 92.7deg, rgba(245,212,212,1) 8.5%, rgba(252,251,224,1) 90.2% );
 }
 
 .sidebar[b-tugwtjr8zs] {
@@ -191,7 +389,7 @@ main[b-tugwtjr8zs] {
 }
 
 .top-row[b-tugwtjr8zs] {
-    background-color: #f7f7f7;
+    background-image: linear-gradient( 92.7deg, rgba(245,212,212,1) 8.5%, rgba(252,251,224,1) 90.2% );
     border-bottom: 1px solid #d6d5d5;
     justify-content: flex-end;
     height: 3.5rem;
@@ -259,15 +457,12 @@ main[b-tugwtjr8zs] {
 }
 /* /Shared/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-s4bk6paxys] {
-    background-color: rgba(255, 255, 255, 0.1);
+     background-color: rgba(255, 255, 255, 0.1); 
 }
 
 .top-row[b-s4bk6paxys] {
     height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.navbar-brand[b-s4bk6paxys] {
+    background: #944E63;
     font-size: 1.1rem;
 }
 
@@ -319,10 +514,11 @@ main[b-tugwtjr8zs] {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
-    
+
     .nav-scrollable[b-s4bk6paxys] {
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
+        background: #B47B84;
     }
 }

@@ -1,0 +1,16 @@
+﻿signin-form {
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+/* Background image */
+body {
+    
+    background-size: cover;
+}
+
+/* Responsive typography */
+h1 {
+    font-size: 2rem; /* Adjust font size here */
+}

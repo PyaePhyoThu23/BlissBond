@@ -1,4 +1,4 @@
-﻿<h3>FormComponent</h3>
+﻿
 <EditForm Model="@user" OnValidSubmit= "@OnValidSubmit">
 	<DataAnnotationsValidator />
 	<ValidationSummary />
@@ -33,6 +33,11 @@
 		<div>
 			<InputText @bind-Value="@user.Location" class="form-control" />
 			<ValidationMessage For="@(()=>user.Location)" />
+		</div>
+		<label>Hobby: </label>
+		<div>
+			<InputText @bind-Value="@user.Hobby" class="form-control" />
+			<ValidationMessage For="@(()=>user.Hobby)" />
 		</div>
 		<label>Email: </label>
 		<div>
