@@ -5,13 +5,12 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-4 p-md-5 text-center">
-
+                    <div class="scrollable-form">
                     <h3 class="mb-4 mb-md-5">Sign Up</h3>
                         <EditForm Model="@user" OnValidSubmit="CreateUser" class="text-start">
                             <DataAnnotationsValidator />
@@ -51,11 +50,7 @@
                                 <InputText type="password" @bind-Value="@user.Password" class="form-control form-control-lg" />
                                 <ValidationMessage For="@(() => user.Password)" />
                             </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label">Profile Picture</label>
-                                <InputFile OnChange="@OnInputFileChange" class="form-control" />
-                            </div>
-
+                      
                             <!-- Submit Button -->
                             <div class="d-grid gap-2">
                                 <button type="submit" class="btn btn-primary btn-lg">Register</button>
@@ -63,10 +58,12 @@
                             </div>
                         </EditForm>
                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+            
  
 @code {
     User user = new User();

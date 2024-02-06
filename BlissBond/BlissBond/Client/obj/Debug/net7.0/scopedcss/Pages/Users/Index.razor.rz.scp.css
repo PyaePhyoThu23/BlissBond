@@ -13,10 +13,10 @@
 }
 
 /* For larger screens */
-@media (min-width: 769px) {
+@media (min-width: 900px) {
     .card[b-w5jrheabbo] {
         margin: auto; /* Center the card for medium to large screens */
-        width: 50%; /* Adjust the card width as per your design */
+        width: 60%; /* Adjust the card width as per your design */
     }
 }
 
@@ -32,6 +32,7 @@
 
 .form-control-lg[b-w5jrheabbo] {
     font-size: 1rem; /* Adjust the font size for form controls */
+    width: 100%;
 }
 
 /* Adjust button sizes on different screens */
@@ -39,3 +40,18 @@
     padding: .375rem 1.75rem;
     font-size: 1rem;
 }
+
+/* Set a max-height and make it scrollable */
+.scrollable-form[b-w5jrheabbo] {
+    max-height: 90vh; /* 90% of the viewport height */
+    overflow-y: auto; /* Add scroll bar when content is taller than max-height */
+}
+
+/* Optional: Responsive breakpoints for different screen sizes */
+@media (max-width: 768px) {
+    .scrollable-form[b-w5jrheabbo] {
+        max-height: 80vh;
+    }
+}
+
+
